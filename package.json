@@ -1,0 +1,26 @@
+{
+    "name": "node-sh",
+    "version": "1.0.0",
+    "main": "dist/node-sh.js",
+
+    "author": "seung_h <delspace0011@gmail.com> (https://github.com/seungh06)",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc",
+        "test": "npm run build && node dist/test.js",
+        "publish": "npm run build && npm publish"
+    },
+    "dependencies": {
+        "@types/node": "^17.0.33"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/seungh06/node-sh.git"
+    },
+    "homepage": "https://github.com/seungh06/node-sh",
+    "bugs": "https://github.com/seungh06/node-sh/issues",
+    "files": [
+        "dist",
+        "src"
+    ]
+}
