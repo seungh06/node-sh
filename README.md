@@ -6,21 +6,10 @@
 [![license](https://img.shields.io/badge/license-MIT-9999FF?style=for-the-badge)](/LICENSE)
 
 Node-sh is an implementations and executions of unix shell commands for node.js that runs on mac os, linux and windows.
-It helps execute your operating system's shell commands, implement and functionalize unix commands.
+It helps execute your operating system's shell commands, implement unix commands and functionalize it.
 
 ### 🕹 Install
 ```bash
  $ yarn add node-sh
  $ npm install node-sh
-```
-
----
-
-### 📐 Usage
-```ts
- import 'node-sh';
-
- const shell = $.which `git`;
- 
- $.env.shell = shell;
 ```
