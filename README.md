@@ -13,3 +13,15 @@ It helps execute your operating system's shell commands, implement unix commands
  $ yarn add node-sh
  $ npm install node-sh
 ```
+### 🛠️ Import
+```typescript
+ import 'node-sh';
+ const sh = require('node-sh'); //use require('node-sh');
+ 
+ $.echo `Hello World!`
+```
+
+
+
+
+## 🔑 Reference
