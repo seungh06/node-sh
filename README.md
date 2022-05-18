@@ -1,6 +1,6 @@
 ![banner](https://user-images.githubusercontent.com/41784860/168438812-90eed635-2fe3-477e-8a25-6527036bffce.png)
 
-## 🎉 NODE-SH
+# 🎉 Node-sh
 [![nodejs](https://img.shields.io/badge/NodeJS-339933?style=for-the-badge&logo=Node.js&logoColor=fff)](https://nodejs.org/)
 [![typescript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=fff)](https://www.typescriptlang.org/)
 [![license](https://img.shields.io/badge/license-MIT-9999FF?style=for-the-badge)](/LICENSE)
@@ -17,8 +17,6 @@ It helps execute your operating system's shell commands, implement unix commands
 ```typescript
  import 'node-sh';
  const sh = require('node-sh'); //use require('node-sh');
- 
- $.echo `Hello World!`
 ```
 
 
