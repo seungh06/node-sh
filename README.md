@@ -43,13 +43,9 @@ Designed to be easy to use, node-sh uses only one `$`. it can execute commands o
 
 ### 💡 Implement
 Node-sh uses a syntax similar to bash to improve the `user-experience` and based on the [linux man page](https://man7.org/linux/man-pages/), it implement Unix-like funcions as similarly as possible.
+
 ```typescript
- $.cd `dist`       // test/dist
- $.rm `-rf shx`    // test/dist/shx
- 
- $.cd `-`          // test
- 
- $.head `-q --lines 15 src/node-sh.ts`
+ $.rm `-Rf --verbose user/test`
 ```
 
 > 
