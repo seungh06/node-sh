@@ -12,15 +12,15 @@ export default function register(options: Array<string | boolean>[],main: Templa
         const supports = options.map(
                 function mapper(option) {
                         const long = option[1] === '-' ? '' : `, --${option[1]}`;
-                        return `-${options[0]}` + long;
+                        return `-${option[0]}` + long;
                 }
-        )
+        ).join(' ');
 
         let sync_options: Array<string | boolean> | undefined, combined_input: string | undefined;
         const _options: Record<string, any> = { }, _inputs: Array<string> = [ ];
 
         for(const segment of divide(cli)) {
-                if(segment[0] === '-') {
+                if(segment !== '-' && segment[0] === '-') {
                         const inputs = segment[0] + segment[1] === '--'
                                 ? divide(segment, '--') : segment.slice(1).split('');
 
@@ -31,7 +31,7 @@ export default function register(options: Array<string | boolean>[],main: Templa
 
                                 if(found === undefined) {
                                         throw new ShxError(
-                                                `${input} option is not recognized.`, 'node-sh', 
+                                                `${segment} option is not recognized.`, 'node-sh', 
                                                 `Supported options: ${supports}`, 1
                                         );
                                 }

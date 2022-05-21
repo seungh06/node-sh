@@ -4,7 +4,7 @@ import      register from 'internal/register'
 import      ShxError from 'internal/shx-error'
 
 export const cat_options = [
-        [ 'n', 'number', false ]
+        [ 'n', 'number', false ], [ 'E', 'show-ends', false ]
 ]
 
 export const cat: defined.shx<string> = (main, ...args) => {
@@ -26,13 +26,21 @@ export const cat: defined.shx<string> = (main, ...args) => {
                         )
                 }
 
-                res += stream.readFileSync(input, 'utf-8');
+                res += stream.readFileSync(input, 'utf-8').replace(/\r/g, '');
         }
 
         if(options.number) {
                 res = res.split('\n').map(
                         function mapper(input, index) {
                                 return (`     ${index + 1}`).slice(-6) + '\t' + input;
+                        }
+                ).join('\n')
+        }
+
+        if(options['show-ends']) {
+                res = res.split('\n').map(
+                        function mapper(input) {
+                                return input + '$'
                         }
                 ).join('\n')
         }

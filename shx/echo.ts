@@ -2,7 +2,7 @@ import * as defined from 'internal/definition'
 import      register from 'internal/register'
 
 export const echo_options = [
-    [ 'n', '', false ], [ 'e', '', false ]
+    [ 'n', '-', false ], [ 'e', '-', false ]
 ]
 
 export const echo: defined.shx<string> = (main, ...args) => {

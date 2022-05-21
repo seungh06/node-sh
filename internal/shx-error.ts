@@ -6,7 +6,6 @@ export const ESC = {
     BG_RED:   '\x1b[41m', FG_WHITE: '\x1b[97m', FG_GRAY: '\x1b[90m'
 }
 
-
 export default class ShxError extends Error {
         constructor(message: string, name: string = 'node-sh', suggest?: string, depth: number = 0) {
                 super(message);

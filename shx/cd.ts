@@ -10,8 +10,6 @@ export const cd: defined.shx<void> = (main, ...args) => {
         const { inputs } = register([ /* EMPTY OPTIONS */ ], main, args);
         let destination = inputs[0];
 
-        console.log(destination)
-
         switch(destination) {
                 case '~':
                 case '':

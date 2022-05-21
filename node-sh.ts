@@ -14,9 +14,9 @@ export function access_module() {
         const dist    = path.join(baseURL, main_config.outDir);
 
         for(const segment in main_config.paths) {
-                modules[restore(segment)] = restore(
-                        main_config.paths[segment][0]
-                ).replace(/src/, dist);
+                modules[restore(segment)] = path.join(
+                        dist, restore(main_config.paths[segment][0])
+                )
         }
 
         const natives = {
@@ -55,16 +55,17 @@ declare global {
                 cat  : defined.shx<string>, head: defined.shx<string> , tail: defined.shx<string>
                 mkdir: defined.shx<void>  , rm  : defined.shx<void>   , 
                 cd   : defined.shx<void>  , pwd : defined.unit<string>,
-                which: defined.shx<string | string[]>
+                which: defined.shx<string | string[]>, echo: defined.shx<string>
         }
 }
 
 export function load_shx() {
         let shx: Record<string, any> = { };
-
         const baseURL = path.resolve(module.path, 'shx');
 
         for(const segment of stream.readdirSync(baseURL)) {
+                if(segment === 'exec.ts') continue; // exclude execute process command. 
+
                 const command = path.join(baseURL, segment);
 
                 shx = {
@@ -73,7 +74,7 @@ export function load_shx() {
                 }
         }
 
-        const internal: Record<string, any> = require('internal/execute').default;
+        const internal: Record<string, any> = require('./shx/exec').default;
         for(const segement in shx) {
                 internal[segement as keyof typeof internal] = shx[segement];
         }
@@ -85,5 +86,5 @@ export const restore = (path: string) => path.replace(/\/\*\/?/g, '');
 export const basename = (input: string) => path.basename(input).replace(/\.\w+$/, '');
 
 void function setup() {
-        access_module(),load_shx()
+        access_module(), load_shx()
 }()
