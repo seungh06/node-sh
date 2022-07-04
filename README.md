@@ -20,6 +20,35 @@ It execute your operating system's shell commands, implement bash commands and f
 ```
 
 ## 🔥 Commands
+Designed to be easy to use, node-sh uses only one `$`. it can execute commands or implementations.
+
+### 🔐 Execute
+```typescript
+  const exec = $ `ls -al | grep 'node-sh'`;
+```
+> Caution: This function uses the [child process](https://nodejs.org/api/child_process.html) module to execute commands directly.
+
+**Environments**
+```typescript
+ $.env: {
+     verbose    : boolean           = false
+     prefix     : string            = ''
+     shell      : string | boolean  = true
+     max_buffer : number            = 200 * 1024 * 1024
+ } // structures
+ 
+ $.env.shell = $.which `git`;
+```
+
+### 📌 Implement
+Node-sh uses syntax similar to bash to improve `user-experience` and implements Unix-like functions based on [linux man page](https://man7.org/linux/man-pages/).
+
+<details>
+  <summary>Click here to read command references.</summary> 
+  
+  ## Syntax
+</details>
+
 
 ## 📋 License
 Distributed under the MIT License. See ```LICENSE``` for more information.
