@@ -43,14 +43,29 @@ Designed to be easy to use, node-sh uses only one `$`. it can execute commands o
 ### 📌 Implement
 Node-sh uses syntax similar to bash to improve `user-experience` and implements Unix-like functions based on [linux man page](https://man7.org/linux/man-pages/).
 
-<details>
-  <summary>Click here to read command references.</summary> 
-  
-  ## Syntax
-</details>
+## 🔗 UnixExtension
+Each function (except void function) returns stdout to `UnixExtension` class that can use JavaScript api according to the type of stdout and pipe functions such as grep, sort, uniq, etc.
 
+**Examples**
+```typescript
+ import 'node-sh'
+ 
+ const data = $.head `-n 15 src/test.ts` // UnixExtension<string>
+ 
+ if(data.includes('import')) {
+     const imports = data.sort `-f`.uniq `-i`.grep `import`
+ }
+```
 
+```typescript
+ import 'node-sh'
+ 
+ const directories = $.ls `-al`.filter(data => {
+     return data.startsWith('d')
+ })
+```
+
+##  🛠  Exceptions
+![exceptions](https://user-images.githubusercontent.com/41784860/177310333-d830318d-0733-470f-9186-696e4cfaebd5.png)
 ## 📋 License
 Distributed under the MIT License. See ```LICENSE``` for more information.
-
-**© 2022 seungh, All rights reserved.**
