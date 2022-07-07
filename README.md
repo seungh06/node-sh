@@ -44,7 +44,7 @@ Designed to be easy to use, node-sh uses only one `$`. it can execute commands o
 Node-sh uses syntax similar to bash to improve `user-experience` and implements Unix-like functions based on [linux man page](https://man7.org/linux/man-pages/).
 
 ## 🔗 UnixExtension
-Each function (except void function) returns stdout to `UnixExtension` class that can use JavaScript api according to the type of stdout and pipe functions such as grep, sort, uniq, etc.
+Each function (except void functions) returns stdout to `UnixExtension` class that can use JavaScript api according to the type of stdout or pipe functions such as grep, sort, uniq, etc.
 
 **Examples**
 ```typescript
