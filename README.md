@@ -41,10 +41,15 @@ Designed to be easy to use, node-sh uses only one `$`. it can execute commands o
 ```
 
 ### 📌 Implement
-Node-sh uses syntax similar to bash to improve `user-experience` and implements Unix-like functions based on [linux man page](https://man7.org/linux/man-pages/).
+Node-sh has implemented syntax and options, etc. similar to `bash` based on [linux man page](https://man7.org/linux/man-pages/) to improve the user-experience.
+
+<details markdown="1">
+  <summary><b>📁 Show Command References</b></summary>
+
+</details>
 
 ## 🔗 UnixExtension
-Each function (except void functions) returns stdout to `UnixExtension` class that can use JavaScript api according to the type of stdout or pipe functions such as grep, sort, uniq, etc.
+Each function (except void functions) returns stdout to `UnixExtension` class that can use JavaScript API according to the type of stdout or pipe functions such as grep, sort, uniq, etc.
 
 **Examples**
 ```typescript
@@ -60,13 +65,20 @@ Each function (except void functions) returns stdout to `UnixExtension` class th
 ```typescript
  import 'node-sh'
  
- // get files with long format and filter 'd' type
+ /*
+     Get Only Directories
+ */
+ 
+ // Use Javascript API
  const dirs = $.ls `-al`.filter(data => data.startsWith('d'))
+ 
+ // Use UnixExtension
+ const good = $.ls `-l`. grep `^d`
 ```
 
 ##  🛠  Exceptions
-Node-sh provides details of the exceptions that occurred in the user's commands or internal and provides solutions.
-> **Note**: Used only for handled errors within the module and not externally available.
+Node-sh provides detail of the exceptions that occurred in user commands or internal and suggests solutions for them.
+> **Note**: It is only used for errors handled within the module and cannot be used externally.
 
 ![exception](https://user-images.githubusercontent.com/41784860/177758975-93b8b637-8906-457d-9424-354428ffbc82.png)
 
