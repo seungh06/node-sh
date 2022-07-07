@@ -6,7 +6,7 @@
 [![license](https://img.shields.io/badge/license-MIT-9999FF?style=for-the-badge)](/LICENSE)
 
 Node-sh is an implementations and executions of bash commands for node.js that runs on mac os, linux and windows.
-It execute your operating system's shell commands, implement bash commands and functionalize it.
+It execute your os shell commands more easily, implement bash commands and functionalize it.
 
 ### 🕹 Install
 ```bash
@@ -26,7 +26,7 @@ Designed to be easy to use, node-sh uses only one `$`. it can execute commands o
 ```typescript
   const exec = $ `ls -al | grep 'node-sh'`;
 ```
-> Caution: This function uses the [child process](https://nodejs.org/api/child_process.html) module to execute commands directly.
+> **Caution**: This function uses the [child process](https://nodejs.org/api/child_process.html) module to execute commands directly.
 
 **Environments**
 ```typescript
@@ -53,19 +53,22 @@ Each function (except void function) returns stdout to `UnixExtension` class tha
  const data = $.head `-n 15 src/test.ts` // UnixExtension<string>
  
  if(data.includes('import')) {
-     const imports = data.sort `-f`.uniq `-i`.grep `import`
+     const imports = data.sort `--ignore-case`.uniq `-i`.grep `import`
  }
 ```
 
 ```typescript
  import 'node-sh'
  
- const directories = $.ls `-al`.filter(data => {
-     return data.startsWith('d')
- })
+ // get files with long format and filter 'd' type
+ const dirs = $.ls `-al`.filter(data => data.startsWith('d'))
 ```
 
 ##  🛠  Exceptions
-![exceptions](https://user-images.githubusercontent.com/41784860/177310333-d830318d-0733-470f-9186-696e4cfaebd5.png)
+Node-sh provides details of the exceptions that occurred in the user's commands or internal and provides solutions.
+> **Note**: Used only for handled errors within the module and not externally available.
+
+![exception](https://user-images.githubusercontent.com/41784860/177758975-93b8b637-8906-457d-9424-354428ffbc82.png)
+
 ## 📋 License
 Distributed under the MIT License. See ```LICENSE``` for more information.
