@@ -1,5 +1,6 @@
-import { spawnSync as spawn } from 'child_process'
-import ShxError from 'internal/shx-error';
+import { spawnSync } from 'child_process'
+import { InternalError } from 'internal/exception'
+import { UnixExtension } from 'internal/extension'
 
 export default function $(main: TemplateStringsArray, ...args: any[]) {
         const cli = args.reduce(
@@ -10,22 +11,22 @@ export default function $(main: TemplateStringsArray, ...args: any[]) {
                 main[0]
         )
 
-        const subprocess = spawn(
+        const subprocess = spawnSync(
                 $.env.prefix + cli,
                 {
                         encoding   : 'utf-8',
                         cwd        : process.cwd(),
-                        shell      : $.env.shell,
+                        shell      : $.env.shell || true,
                         maxBuffer  : $.env.max_buffer,
                         windowsHide: true,
                 }
         )
 
         if(subprocess.status !== 0) {
-                throw new ShxError(`${subprocess.stderr} \nexit code: ${subprocess.status}`);
+                throw new InternalError(`${subprocess.stderr} \nexit code: ${subprocess.status}`);
         }
 
-        return subprocess.stdout;
+        return new UnixExtension(subprocess.stdout);
 }
 
 $.env = {
