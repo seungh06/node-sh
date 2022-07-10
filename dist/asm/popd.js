@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.popd = exports.popd_options = void 0;
-const exception_1 = require("internal/exception");
-const interpreter_1 = require("internal/interpreter");
-const extension_1 = require("internal/extension");
-const dirs_1 = require("assm/dirs");
-const cd_1 = require("assm/cd");
+const exception_1 = require("#internal/exception");
+const interpreter_1 = require("#internal/interpreter");
+const extension_1 = require("#internal/extension");
+const dirs_1 = require("#assm/dirs");
+const cd_1 = require("#assm/cd");
 exports.popd_options = [
     {
         short: 'n', description: 'Suppresses the normal change of directory when removing\n directories from the stack, so only the stack is manipulated.'

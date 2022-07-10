@@ -5,13 +5,12 @@
 
         "strict": true,
         "esModuleInterop": true,
-        "moduleResolution": "node",
 
         "baseUrl": "./",
         "outDir": "dist",
         "paths": {
-            "internal/*": [ "./internal/*" ],
-            "assm/*": [ "./asm/*" ]
+            "#internal/*": [ "internal/*" ],
+            "#assm/*": [ "asm/*" ]
         }
     }
 }

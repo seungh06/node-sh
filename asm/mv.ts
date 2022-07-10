@@ -1,6 +1,6 @@
-import * as defined from 'internal/defined'
-import { InternalError } from 'internal/exception'
-import { interpret } from 'internal/interpreter'
+import * as defined from '#internal/defined'
+import { InternalError } from '#internal/exception'
+import { interpret } from '#internal/interpreter'
 import path from 'path/posix'
 import stream from 'fs'
 

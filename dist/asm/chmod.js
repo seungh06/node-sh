@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.process_symbol = exports.get_permission = exports.permissions = exports.get_struct = exports.to_int = exports.load_reference = exports.constants = exports.chmod = exports.chmod_options = void 0;
 const posix_1 = __importDefault(require("path/posix"));
 const fs_1 = __importDefault(require("fs"));
-const exception_1 = require("internal/exception");
-const interpreter_1 = require("internal/interpreter");
+const exception_1 = require("#internal/exception");
+const interpreter_1 = require("#internal/interpreter");
 exports.chmod_options = [
     {
         short: 'c', long: 'changes',

@@ -1,8 +1,8 @@
-import * as defined from 'internal/defined'
+import * as defined from '#internal/defined'
 import path from 'path/posix'
 import stream from 'fs'
-import { InternalError } from 'internal/exception'
-import { interpret } from 'internal/interpreter'
+import { InternalError } from '#internal/exception'
+import { interpret } from '#internal/interpreter'
 
 export const chmod_options: defined.sh_options = [
         {

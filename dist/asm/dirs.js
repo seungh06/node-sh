@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.load_index = exports.is_index = exports.load_stacks = exports.DIRECTORY_STACK = exports.dirs = exports.dirs_options = void 0;
-const exception_1 = require("internal/exception");
-const extension_1 = require("internal/extension");
-const interpreter_1 = require("internal/interpreter");
+const exception_1 = require("#internal/exception");
+const extension_1 = require("#internal/extension");
+const interpreter_1 = require("#internal/interpreter");
 exports.dirs_options = [
     {
         short: 'c', description: 'clear the directory stack by deleting all of the elements'

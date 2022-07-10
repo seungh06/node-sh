@@ -45,7 +45,7 @@ function load_sh() {
         const command = path_1.default.join(baseURL, segment);
         commands[(0, exports.basename)(command)] = require(command)[(0, exports.basename)(command)];
     }
-    const internal = require('assm/exec').default;
+    const internal = require('#assm/exec').default;
     for (const segement in commands) {
         internal[segement] = commands[segement];
     }

@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rmdir = exports.rmdir_options = void 0;
-const interpreter_1 = require("internal/interpreter");
+const interpreter_1 = require("#internal/interpreter");
 const fs_1 = __importDefault(require("fs"));
-const exception_1 = require("internal/exception");
+const exception_1 = require("#internal/exception");
 exports.rmdir_options = [
     {
         short: 'p', long: 'parents',

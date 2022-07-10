@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cat = exports.cat_options = void 0;
 const fs_1 = __importDefault(require("fs"));
-const interpreter_1 = require("internal/interpreter");
-const exception_1 = require("internal/exception");
-const extension_1 = require("internal/extension");
+const interpreter_1 = require("#internal/interpreter");
+const exception_1 = require("#internal/exception");
+const extension_1 = require("#internal/extension");
 exports.cat_options = [
     {
         short: 'n', long: 'number',

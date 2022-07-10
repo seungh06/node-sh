@@ -1,6 +1,6 @@
-import * as defined from 'internal/defined'
-import { UnixExtension } from 'internal/extension'
-import { interpret } from 'internal/interpreter'
+import * as defined from '#internal/defined'
+import { UnixExtension } from '#internal/extension'
+import { interpret } from '#internal/interpreter'
 
 export const echo_options: defined.sh_options = [
         {
