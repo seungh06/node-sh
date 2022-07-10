@@ -1,7 +1,7 @@
-import * as defined from '#internal/defined'
-import { interpret } from '#internal/interpreter'
+import * as defined from 'internal/defined'
+import { interpret } from 'internal/interpreter'
 import stream from 'fs'
-import { InternalError } from '#internal/exception'
+import { InternalError } from 'internal/exception'
 
 export const touch_options: defined.sh_options = [
         {

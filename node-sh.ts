@@ -1,4 +1,4 @@
-import * as defined from '#internal/defined'
+import * as defined from 'internal/defined'
 import path         from 'path'
 import stream       from 'fs'
 
@@ -73,7 +73,7 @@ export function load_sh() {
                 commands[ basename(command) ] = require(command)[ basename(command) ];
         }
 
-        const internal: Record<string, any> = require('#assm/exec').default
+        const internal: Record<string, any> = require('assm/exec').default
         for(const segement in commands) {
                 internal[segement as keyof typeof internal] = commands[segement];
         }

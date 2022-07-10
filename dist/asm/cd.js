@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cd = exports.previous_pwd = void 0;
 const fs_1 = __importDefault(require("fs"));
-const exception_1 = require("#internal/exception");
-const interpreter_1 = require("#internal/interpreter");
+const exception_1 = require("internal/exception");
+const interpreter_1 = require("internal/interpreter");
 const os_1 = require("os");
 const node = ['-node', 'cd'];
 const cd = (main, ...args) => {

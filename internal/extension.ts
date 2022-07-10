@@ -1,11 +1,11 @@
-import * as defined from '#internal/defined'
-import { interpret } from '#internal/interpreter'
+import * as defined from 'internal/defined'
+import { interpret } from 'internal/interpreter'
 
-import { grep_options } from '#assm/grep'
-import { head_options } from '#assm/head'
-import { tail_options } from '#assm/tail'
-import { uniq_options } from '#assm/uniq'
-import { sort_options, default_sort, insentive_sort, numeric_sort } from '#assm/sort'
+import { grep_options } from 'assm/grep'
+import { head_options } from 'assm/head'
+import { tail_options } from 'assm/tail'
+import { uniq_options } from 'assm/uniq'
+import { sort_options, default_sort, insentive_sort, numeric_sort } from 'assm/sort'
 
 class _UnixExtension<T> {
         constructor(public readonly stdout: T) {

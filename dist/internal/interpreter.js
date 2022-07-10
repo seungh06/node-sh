@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generate_man = exports.get_head = exports.compose = exports.division = exports.interpret = void 0;
-const wcm_1 = __importDefault(require("#internal/wcm"));
-const exception_1 = require("#internal/exception");
+const wcm_1 = __importDefault(require("internal/wcm"));
+const exception_1 = require("internal/exception");
 function interpret(token, main, args) {
     const shell = args.reduce(function reducer(previous, current, index) {
         const input = Array.isArray(current) ? current.map(element => `'${element}'`).join(' ') : current;

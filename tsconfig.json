@@ -6,11 +6,11 @@
         "strict": true,
         "esModuleInterop": true,
 
-        "baseUrl": "./",
+        "baseUrl": ".",
         "outDir": "dist",
         "paths": {
-            "#internal/*": [ "internal/*" ],
-            "#assm/*": [ "asm/*" ]
+            "internal/*": [ "internal/*" ],
+            "assm/*": [ "asm/*" ]
         }
     }
 }

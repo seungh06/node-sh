@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.uniq = exports.uniq_options = void 0;
-const interpreter_1 = require("#internal/interpreter");
+const interpreter_1 = require("internal/interpreter");
 const fs_1 = __importDefault(require("fs"));
-const exception_1 = require("#internal/exception");
-const extension_1 = require("#internal/extension");
+const exception_1 = require("internal/exception");
+const extension_1 = require("internal/extension");
 exports.uniq_options = [
     {
         short: 'c', long: 'count',

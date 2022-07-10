@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.is_dir = exports.mv = exports.mv_options = void 0;
-const exception_1 = require("#internal/exception");
-const interpreter_1 = require("#internal/interpreter");
+const exception_1 = require("internal/exception");
+const interpreter_1 = require("internal/interpreter");
 const posix_1 = __importDefault(require("path/posix"));
 const fs_1 = __importDefault(require("fs"));
 exports.mv_options = [

@@ -1,8 +1,8 @@
-import * as defined from '#internal/defined'
-import { interpret } from '#internal/interpreter'
+import * as defined from 'internal/defined'
+import { interpret } from 'internal/interpreter'
 import stream from 'fs'
-import { InternalError } from '#internal/exception'
-import { UnixExtension } from '#internal/extension'
+import { InternalError } from 'internal/exception'
+import { UnixExtension } from 'internal/extension'
 
 export const sort_options: defined.sh_options = [
         {

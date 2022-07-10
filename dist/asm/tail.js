@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.tail = exports.tail_options = void 0;
-const exception_1 = require("#internal/exception");
-const interpreter_1 = require("#internal/interpreter");
+const exception_1 = require("internal/exception");
+const interpreter_1 = require("internal/interpreter");
 const fs_1 = __importDefault(require("fs"));
-const extension_1 = require("#internal/extension");
+const extension_1 = require("internal/extension");
 exports.tail_options = [
     {
         short: 'c', long: 'bytes', input: '[+]NUM',

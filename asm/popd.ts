@@ -1,10 +1,10 @@
-import * as defined from '#internal/defined'
-import { InternalError } from '#internal/exception'
-import { interpret } from '#internal/interpreter'
-import { UnixExtension } from '#internal/extension'
+import * as defined from 'internal/defined'
+import { InternalError } from 'internal/exception'
+import { interpret } from 'internal/interpreter'
+import { UnixExtension } from 'internal/extension'
 
-import { DIRECTORY_STACK, load_index, load_stacks } from '#assm/dirs'
-import { cd } from '#assm/cd'
+import { DIRECTORY_STACK, load_index, load_stacks } from 'assm/dirs'
+import { cd } from 'assm/cd'
 
 export const popd_options: defined.sh_options = [
         {

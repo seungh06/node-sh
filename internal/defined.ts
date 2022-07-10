@@ -1,4 +1,4 @@
-import { UnixExtension } from '#internal/extension'
+import { UnixExtension } from 'internal/extension'
 
 export type sh<stdout> = (main: TemplateStringsArray, ...args: any[]) =>
         stdout extends void ? void : UnixExtension<stdout>

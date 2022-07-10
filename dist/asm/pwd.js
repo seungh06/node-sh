@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pwd = void 0;
-const extension_1 = require("#internal/extension");
+const extension_1 = require("internal/extension");
 const path_1 = __importDefault(require("path"));
 const pwd = (main, ...args) => {
     const output = path_1.default.resolve(process.cwd());
