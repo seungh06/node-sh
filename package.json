@@ -1,6 +1,7 @@
 {
-    "name": "node-sh",
-    "version": "1.0.0",
+    "name": "@seung_h/node-sh",
+    "version": "1.0.9",
+    "description": "Portable implementations and executions of bash commands for node.js",
     "main": "dist/node-sh.js",
     "exports": {
         ".": "./dist/node-sh.js"
@@ -20,10 +21,5 @@
         "url": "https://github.com/seungh06/node-sh.git"
     },
     "homepage": "https://github.com/seungh06/node-sh",
-    "bugs": "https://github.com/seungh06/node-sh/issues",
-    "files": [
-        "asm",
-        "internal",
-        "dist"
-    ]
+    "bugs": "https://github.com/seungh06/node-sh/issues"
 }
