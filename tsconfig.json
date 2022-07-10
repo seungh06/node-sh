@@ -5,6 +5,7 @@
 
         "strict": true,
         "esModuleInterop": true,
+        "moduleResolution": "node",
 
         "baseUrl": "./",
         "outDir": "dist",

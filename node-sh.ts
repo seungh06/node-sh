@@ -1,5 +1,6 @@
-import path   from 'path'
-import stream from 'fs'
+import * as defined from 'internal/defined'
+import path         from 'path'
+import stream       from 'fs'
 
 export const node   : Record<string, any>    = require('module');
 export const modules: Record<string, string> = { };
@@ -42,6 +43,24 @@ export function access_module() {
         }
 }
 
+declare global {
+        var $: defined.sh<string> & {
+                env: {
+                        verbose    : boolean
+                        prefix     : string
+                        shell      : string | boolean
+                        max_buffer : number
+                }
+                
+                cat  : defined.sh<string>  , head : defined.sh<string>  , tail : defined.sh<string>
+                ls   : defined.sh<string[]>, cd   : defined.sh<void>    , pwd  : defined.sh<string>
+                mkdir: defined.sh<void>    , rm   : defined.sh<void>    , rmdir: defined.sh<void>
+                touch: defined.sh<void>    , grep : defined.sh<string[]>, chmod: defined.sh<void>
+                dirs : defined.sh<string[]>, pushd: defined.sh<string[]>, popd : defined.sh<void>
+                which: defined.sh<string>  , echo : defined.sh<string>  , mv   : defined.sh<void>
+                uniq : defined.sh<string>  , sort : defined.sh<string>  , //ps   : defined.sh<string[]>
+        }
+}
 
 export function load_sh() {
         let commands: Record<string, any> = { };
@@ -67,26 +86,5 @@ export const basename = (input: string) => path.basename(input).replace(/\.\w+$/
 void function setup() {
         access_module(), load_sh()
 }()
-
-import * as defined from 'internal/defined'
-
-declare global {
-        var $: defined.sh<string> & {
-                env: {
-                        verbose    : boolean
-                        prefix     : string
-                        shell      : string | boolean
-                        max_buffer : number
-                }
-                
-                cat  : defined.sh<string>  , head : defined.sh<string>  , tail : defined.sh<string>
-                ls   : defined.sh<string[]>, cd   : defined.sh<void>    , pwd  : defined.sh<string>
-                mkdir: defined.sh<void>    , rm   : defined.sh<void>    , rmdir: defined.sh<void>
-                touch: defined.sh<void>    , grep : defined.sh<string[]>, chmod: defined.sh<void>
-                dirs : defined.sh<string[]>, pushd: defined.sh<string[]>, popd : defined.sh<void>
-                which: defined.sh<string>  , echo : defined.sh<string>  , mv   : defined.sh<void>
-                uniq : defined.sh<string>  , sort : defined.sh<string>  , //ps   : defined.sh<string[]>
-        }
-}
 
 export default global.$;
