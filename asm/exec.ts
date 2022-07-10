@@ -1,6 +1,6 @@
 import { spawnSync } from 'child_process'
-import { InternalError } from 'internal/exception'
-import { UnixExtension } from 'internal/extension'
+import { InternalError } from 'core/exception'
+import { UnixExtension } from 'core/extension'
 
 export default function $(main: TemplateStringsArray, ...args: any[]) {
         const cli = args.reduce(

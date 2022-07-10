@@ -1,7 +1,7 @@
-import * as defined from 'internal/defined'
-import { InternalError } from 'internal/exception'
-import { interpret } from 'internal/interpreter'
-import { UnixExtension } from 'internal/extension'
+import * as defined from 'core/defined'
+import { InternalError } from 'core/exception'
+import { interpret } from 'core/interpreter'
+import { UnixExtension } from 'core/extension'
 
 import { DIRECTORY_STACK, is_index, load_index, load_stacks } from 'assm/dirs'
 import { cd } from 'assm/cd'

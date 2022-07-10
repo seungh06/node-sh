@@ -1,5 +1,5 @@
-import * as defined from 'internal/defined'
-import { interpret } from 'internal/interpreter'
+import * as defined from 'core/defined'
+import { interpret } from 'core/interpreter'
 
 import { grep_options } from 'assm/grep'
 import { head_options } from 'assm/head'

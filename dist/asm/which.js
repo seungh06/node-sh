@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.which = exports.isWindows = exports.which_options = void 0;
-const extension_1 = require("internal/extension");
-const interpreter_1 = require("internal/interpreter");
+const extension_1 = require("core/extension");
+const interpreter_1 = require("core/interpreter");
 const posix_1 = __importDefault(require("path/posix"));
 const fs_1 = __importDefault(require("fs"));
 exports.which_options = [

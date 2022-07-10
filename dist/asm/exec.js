@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const child_process_1 = require("child_process");
-const exception_1 = require("internal/exception");
-const extension_1 = require("internal/extension");
+const exception_1 = require("core/exception");
+const extension_1 = require("core/extension");
 function $(main, ...args) {
     const cli = args.reduce(function reducer(previous, current, index) {
         const input = Array.isArray(current) ? current.join(' ') : current;

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UnixExtension = exports.get_prototypes = void 0;
-const interpreter_1 = require("internal/interpreter");
+const interpreter_1 = require("core/interpreter");
 const grep_1 = require("assm/grep");
 const head_1 = require("assm/head");
 const tail_1 = require("assm/tail");

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.echo = exports.echo_options = void 0;
-const extension_1 = require("internal/extension");
-const interpreter_1 = require("internal/interpreter");
+const extension_1 = require("core/extension");
+const interpreter_1 = require("core/interpreter");
 exports.echo_options = [
     {
         short: 'n',

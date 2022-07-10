@@ -1,8 +1,8 @@
-import * as defined from 'internal/defined'
-import { InternalError } from 'internal/exception'
-import { interpret } from 'internal/interpreter'
+import * as defined from 'core/defined'
+import { InternalError } from 'core/exception'
+import { interpret } from 'core/interpreter'
 import stream from 'fs'
-import { UnixExtension } from 'internal/extension'
+import { UnixExtension } from 'core/extension'
 
 export const tail_options: defined.sh_options = [
         {

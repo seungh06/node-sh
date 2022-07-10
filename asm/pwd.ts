@@ -1,5 +1,5 @@
-import * as defined from 'internal/defined'
-import { UnixExtension } from 'internal/extension'
+import * as defined from 'core/defined'
+import { UnixExtension } from 'core/extension'
 import path from 'path'
 
 export const pwd: defined.sh<string> = (main, ...args) => {

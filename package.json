@@ -4,7 +4,10 @@
     "description": "Portable implementations and executions of bash commands for node.js",
     "main": "dist/node-sh.js",
     "exports": {
-        ".": "./dist/node-sh.js"
+        ".": {
+            "default": "./dist/node-sh.js",
+            "types": "./node-sh.ts"
+        }
     },
     "types": "node-sh.ts",
     "author": "seung_h <delspace0011@gmail.com> (https://github.com/seungh06)",
