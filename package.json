@@ -5,7 +5,7 @@
     "exports": {
         ".": "./dist/node-sh.js"
     },
-    "types": "src/node-sh.ts",
+    "types": "node-sh.ts",
     "author": "seung_h <delspace0011@gmail.com> (https://github.com/seungh06)",
     "license": "MIT",
     "scripts": {
