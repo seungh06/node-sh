@@ -1,7 +1,7 @@
-import * as defined from 'core/defined'
+import * as defined from '../internal/defined'
 import stream from 'fs'
-import { InternalError } from 'core/exception'
-import { interpret } from 'core/interpreter'
+import { InternalError } from '../internal/exception'
+import { interpret } from '../internal/interpreter'
 import { homedir } from 'os'
 
 const node = [ '-node', 'cd' ];

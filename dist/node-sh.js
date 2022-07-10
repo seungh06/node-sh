@@ -8,6 +8,9 @@ const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 exports.node = require('module');
 exports.modules = {};
+/**
+ * @deprecated Module System ism't work as module.
+ */
 function access_module() {
     const main_config = require(path_1.default.resolve(module.path, '../tsconfig.json') // node-sh/tsconfig.json
     ).compilerOptions;
@@ -45,7 +48,7 @@ function load_sh() {
         const command = path_1.default.join(baseURL, segment);
         commands[(0, exports.basename)(command)] = require(command)[(0, exports.basename)(command)];
     }
-    const internal = require('assm/exec').default;
+    const internal = require('./asm/exec').default;
     for (const segement in commands) {
         internal[segement] = commands[segement];
     }
@@ -57,6 +60,6 @@ exports.restore = restore;
 const basename = (input) => path_1.default.basename(input).replace(/\.\w+$/, '');
 exports.basename = basename;
 void function setup() {
-    access_module(), load_sh();
+    load_sh();
 }();
 exports.default = global.$;

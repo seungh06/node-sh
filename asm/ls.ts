@@ -1,7 +1,7 @@
-import * as defined from 'core/defined'
-import { UnixExtension } from 'core/extension'
-import { interpret } from 'core/interpreter'
-import { InternalError } from 'core/exception'
+import * as defined from '../internal/defined'
+import { UnixExtension } from '../internal/extension'
+import { interpret } from '../internal/interpreter'
+import { InternalError } from '../internal/exception'
 import path from 'path/posix'
 import stream from 'fs'
 

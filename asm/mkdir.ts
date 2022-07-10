@@ -1,8 +1,8 @@
-import * as defined from 'core/defined'
-import { interpret } from 'core/interpreter'
+import * as defined from '../internal/defined'
+import { interpret } from '../internal/interpreter'
 import path from 'path/posix'
 import stream from 'fs'
-import { InternalError } from 'core/exception'
+import { InternalError } from '../internal/exception'
 
 export const mkdir_options: defined.sh_options = [
         {

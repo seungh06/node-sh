@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.get_struct = exports.grep = exports.grep_options = void 0;
 const posix_1 = __importDefault(require("path/posix"));
 const fs_1 = __importDefault(require("fs"));
-const interpreter_1 = require("core/interpreter");
-const exception_1 = require("core/exception");
-const extension_1 = require("core/extension");
+const interpreter_1 = require("../internal/interpreter");
+const exception_1 = require("../internal/exception");
+const extension_1 = require("../internal/extension");
 exports.grep_options = [
     {
         short: 'i', long: 'ignore-case',

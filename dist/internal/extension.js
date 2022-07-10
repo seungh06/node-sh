@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UnixExtension = exports.get_prototypes = void 0;
-const interpreter_1 = require("core/interpreter");
-const grep_1 = require("assm/grep");
-const head_1 = require("assm/head");
-const tail_1 = require("assm/tail");
-const uniq_1 = require("assm/uniq");
-const sort_1 = require("assm/sort");
+const interpreter_1 = require("./interpreter");
+const grep_1 = require("../asm/grep");
+const head_1 = require("../asm/head");
+const tail_1 = require("../asm/tail");
+const uniq_1 = require("../asm/uniq");
+const sort_1 = require("../asm/sort");
 class _UnixExtension {
     stdout;
     constructor(stdout) {

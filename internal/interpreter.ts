@@ -1,7 +1,7 @@
-import * as defined from 'core/defined'
-import wcm from 'core/wcm'
+import * as defined from './defined'
+import wcm from './wcm'
 
-import { InternalError } from 'core/exception'
+import { InternalError } from './exception'
 
 export function interpret(token: defined.sh_options, main: TemplateStringsArray, args: Array<any>) {
         const shell = args.reduce<string>(

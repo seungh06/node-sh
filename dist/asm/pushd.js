@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pushd = exports.pushd_options = void 0;
-const exception_1 = require("core/exception");
-const interpreter_1 = require("core/interpreter");
-const extension_1 = require("core/extension");
-const dirs_1 = require("assm/dirs");
-const cd_1 = require("assm/cd");
+const exception_1 = require("../internal/exception");
+const interpreter_1 = require("../internal/interpreter");
+const extension_1 = require("../internal/extension");
+const dirs_1 = require("../asm/dirs");
+const cd_1 = require("../asm/cd");
 exports.pushd_options = [
     {
         short: 'n', description: 'Suppresses the normal change of directory when adding\n directories to the stack, so only the stack is manipulated.'

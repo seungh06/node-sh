@@ -1,7 +1,7 @@
-import * as defined from 'core/defined'
-import { InternalError } from 'core/exception'
-import { UnixExtension } from 'core/extension'
-import { interpret } from 'core/interpreter'
+import * as defined from '../internal/defined'
+import { InternalError } from '../internal/exception'
+import { UnixExtension } from '../internal/extension'
+import { interpret } from '../internal/interpreter'
 
 export const dirs_options: defined.sh_options = [
         {

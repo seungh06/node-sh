@@ -5,12 +5,6 @@
 
         "strict": true,
         "esModuleInterop": true,
-
-        "baseUrl": "./",
-        "outDir": "dist",
-        "paths": {
-            "core/*": [ "internal/*" ],
-            "assm/*": [ "asm/*" ]
-        }
+        "outDir": "dist"
     }
 }

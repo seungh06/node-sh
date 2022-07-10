@@ -1,9 +1,9 @@
-import * as defined from 'core/defined'
+import * as defined from '../internal/defined'
 import path from 'path/posix'
 import stream from 'fs'
-import { interpret } from 'core/interpreter'
-import { InternalError } from 'core/exception'
-import { UnixExtension } from 'core/extension'
+import { interpret } from '../internal/interpreter'
+import { InternalError } from '../internal/exception'
+import { UnixExtension } from '../internal/extension'
 
 export const grep_options: defined.sh_options = [
         {

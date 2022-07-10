@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.get_struct = exports.get_month = exports.pad_digits = exports.format_date = exports.get_permission = exports.permissions = exports.ls = exports.ls_options = void 0;
-const extension_1 = require("core/extension");
-const interpreter_1 = require("core/interpreter");
-const exception_1 = require("core/exception");
+const extension_1 = require("../internal/extension");
+const interpreter_1 = require("../internal/interpreter");
+const exception_1 = require("../internal/exception");
 const posix_1 = __importDefault(require("path/posix"));
 const fs_1 = __importDefault(require("fs"));
 exports.ls_options = [

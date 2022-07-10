@@ -1,10 +1,13 @@
-import * as defined from 'internal/defined'
+import * as defined from './internal/defined'
 import path         from 'path'
 import stream       from 'fs'
 
 export const node   : Record<string, any>    = require('module');
 export const modules: Record<string, string> = { };
 
+/**
+ * @deprecated Module System ism't work as module.
+ */
 export function access_module() {
         const main_config = require(
                 path.resolve(module.path, '../tsconfig.json') // node-sh/tsconfig.json
@@ -73,7 +76,7 @@ export function load_sh() {
                 commands[ basename(command) ] = require(command)[ basename(command) ];
         }
 
-        const internal: Record<string, any> = require('assm/exec').default
+        const internal: Record<string, any> = require('./asm/exec').default
         for(const segement in commands) {
                 internal[segement as keyof typeof internal] = commands[segement];
         }
@@ -84,7 +87,7 @@ export const restore = (path: string) => path.replace(/\/\*\/?/g, '');
 export const basename = (input: string) => path.basename(input).replace(/\.\w+$/, '');
 
 void function setup() {
-        access_module(), load_sh()
+        load_sh()
 }()
 
 export default global.$;
