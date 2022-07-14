@@ -6,7 +6,7 @@ export const node   : Record<string, any>    = require('module');
 export const modules: Record<string, string> = { };
 
 /**
- * @deprecated Module System ism't work as module.
+ * @deprecated Module System isn't work in node_modules
  */
 export function access_module() {
         const main_config = require(
@@ -62,6 +62,7 @@ declare global {
                 dirs : defined.sh<string[]>, pushd: defined.sh<string[]>, popd : defined.sh<void>
                 which: defined.sh<string>  , echo : defined.sh<string>  , mv   : defined.sh<void>
                 uniq : defined.sh<string>  , sort : defined.sh<string>  , //ps   : defined.sh<string[]>
+                whoami: defined.sh<string>
         }
 }
 

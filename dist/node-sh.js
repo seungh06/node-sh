@@ -9,7 +9,7 @@ const fs_1 = __importDefault(require("fs"));
 exports.node = require('module');
 exports.modules = {};
 /**
- * @deprecated Module System ism't work as module.
+ * @deprecated Module System isn't work in node_modules
  */
 function access_module() {
     const main_config = require(path_1.default.resolve(module.path, '../tsconfig.json') // node-sh/tsconfig.json

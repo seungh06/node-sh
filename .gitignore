@@ -114,3 +114,4 @@ out
 .pnp.*
 
 test.ts
+dist/test.js
