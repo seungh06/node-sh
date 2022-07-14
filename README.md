@@ -86,10 +86,6 @@ Node-sh provides detail of the exceptions that occurred in user commands or inte
 > **Note**: It is only used for errors handled within the module and cannot be used externally.
 
 ![exception](https://user-images.githubusercontent.com/41784860/177758975-93b8b637-8906-457d-9424-354428ffbc82.png)
-<<<<<<< HEAD
-
 
 ## 📋 License
 Distributed under the MIT License. See ```LICENSE``` for more information.
-=======
->>>>>>> 914b7aa56e26be77d0b11c65acf1a40fc9c4f2aa
