@@ -16,8 +16,8 @@
         "build": "tsc",
         "test": "npm run build && node dist/test.js"
     },
-    "dependencies": {
-        "@types/node": "^18.0.0"
+    "devDependencies": {
+        "@types/node": "^18.0.4"
     },
     "repository": {
         "type": "git",
