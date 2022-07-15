@@ -14,7 +14,6 @@ export const which_options: defined.sh_options = [
 export const isWindows = process.platform === 'win32' 
         || process.env.OSTYPE === 'cygwin' || process.env.OSTYPE === 'msys';
 
-
 export const which: defined.sh<string> = (main, ...args) => {
         const { options, stdin } = interpret(which_options, main, args);
         const seperator = isWindows ? ';' : ':';

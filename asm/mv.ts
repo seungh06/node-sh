@@ -20,7 +20,7 @@ export const mv: defined.sh<void> = (main, ...args) => {
         const { options, stdin } = interpret(mv_options, main, args);
 
         if(stdin.length < 2) {
-                throw new InternalError(`mv: mv: missing source and/or destination file.`);
+                throw new InternalError(`mv: missing source and/or destination file.`);
         }
 
         const sources = stdin.slice(0, stdin.length - 1), dest = stdin[stdin.length - 1];

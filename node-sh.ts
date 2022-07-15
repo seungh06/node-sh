@@ -55,14 +55,14 @@ declare global {
                         max_buffer : number
                 }
                 
-                cat  : defined.sh<string>  , head : defined.sh<string>  , tail : defined.sh<string>
-                ls   : defined.sh<string[]>, cd   : defined.sh<void>    , pwd  : defined.sh<string>
-                mkdir: defined.sh<void>    , rm   : defined.sh<void>    , rmdir: defined.sh<void>
-                touch: defined.sh<void>    , grep : defined.sh<string[]>, chmod: defined.sh<void>
-                dirs : defined.sh<string[]>, pushd: defined.sh<string[]>, popd : defined.sh<void>
-                which: defined.sh<string>  , echo : defined.sh<string>  , mv   : defined.sh<void>
-                uniq : defined.sh<string>  , sort : defined.sh<string>  , //ps   : defined.sh<string[]>
-                whoami: defined.sh<string>
+                cat  : defined.sh<string>  , head : defined.sh<string>  , tail  : defined.sh<string>
+                ls   : defined.sh<string[]>, cd   : defined.sh<void>    , pwd   : defined.sh<string>
+                mkdir: defined.sh<void>    , rm   : defined.sh<void>    , rmdir : defined.sh<void>
+                touch: defined.sh<void>    , grep : defined.sh<string[]>, chmod : defined.sh<void>
+                dirs : defined.sh<string[]>, pushd: defined.sh<string[]>, popd  : defined.sh<void>
+                which: defined.sh<string>  , echo : defined.sh<string>  , mv    : defined.sh<void>
+                uniq : defined.sh<string>  , sort : defined.sh<string>  , whoami: defined.sh<string>
+                cp   : defined.sh<void>
         }
 }
 
