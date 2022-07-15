@@ -15,7 +15,7 @@ Node-sh is a bash command implementation and os shell command execution for node
 ## 🔥 Features
 - TypeScript based, zero dependencies. 📦
 - Simple command execution with user environment.
-- **22** bash commands implemented.
+- **23** bash commands implemented.
 - Each command supports type-based JavaScript API and pipe commands.
 - Provides details about exceptions in user command with rendered code. 
 
