@@ -1,5 +1,5 @@
-import stream from 'fs'
-import path from 'path/posix'
+import path from 'node:path/posix'
+import fs from 'node:fs'
 
 export function generate(glob: string) {
         const symbols = [ '/', '$', '^', '+', '.', '(', ')', '=', '!', '|' ];
@@ -44,7 +44,7 @@ export function generate(glob: string) {
 export function get_struct(root: string) {
         const res: Array<string> = [ ];
 
-        const dirents = stream.readdirSync(root, { withFileTypes: true });
+        const dirents = fs.readdirSync(root, { withFileTypes: true });
         for(const dirent of dirents) {
                 if(dirent.name === 'node_modules') continue; // ignore node_modules
                 const basename = path.join(root, dirent.name);

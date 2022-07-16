@@ -1,35 +1,31 @@
-import * as defined from './internal/defined'
-import path         from 'path'
-import stream       from 'fs'
+import * as defined from 'internal/defined'
+import path from 'node:path'
+import fs from 'node:fs'
 
 export const node   : Record<string, any>    = require('module');
 export const modules: Record<string, string> = { };
 
-/**
- * @deprecated Module System isn't work in node_modules
- */
 export function access_module() {
         const main_config = require(
-                path.resolve(module.path, '../tsconfig.json') // node-sh/tsconfig.json
+                path.resolve(module.path, '..', 'tsconfig.json')
         ).compilerOptions;
 
-        const baseURL = path.resolve(module.path, '..', main_config.baseUrl);
-        const dist    = path.join(baseURL, main_config.outDir);
+        const dist = path.join(module.path, '..', main_config.outDir);
 
         for(const segment in main_config.paths) {
-                modules[ restore(segment) ] = path.join(
-                        dist, restore(main_config.paths[segment][0])
+                modules[ header(segment) ] = path.join(
+                        dist, header(main_config.paths[segment][0])
                 )
         }
 
-        const natives = {
+        const native = {
                 modules: node.builtinModules as string[],
                 load   : node._resolveFilename as Function
         }
 
         node._resolveFilename = function(request: string, _parent: any, _isMain: boolean) {
-                const native_request = natives.modules.includes(request);
-                if(native_request) return natives.load.apply(this, arguments);
+                const native_request = native.modules.includes(request);
+                if(native_request) return native.load.apply(this, arguments);
 
                 const module = Object.keys(modules)
                         .find(module => request.includes(module));
@@ -42,12 +38,14 @@ export function access_module() {
                         ...Array.prototype.slice.call(arguments, 1)
                 ];
 
-                return natives.load.apply(this, modified);
+                return native.load.apply(this, modified);
         }
 }
 
+export const header = (path: string) => path.replace(/\/\*/g, '');
+
 declare global {
-        var $: defined.sh<string> & {
+        var $: defined.asm<string> & {
                 env: {
                         verbose    : boolean
                         prefix     : string
@@ -55,29 +53,29 @@ declare global {
                         max_buffer : number
                 }
                 
-                cat  : defined.sh<string>  , head : defined.sh<string>  , tail  : defined.sh<string>
-                ls   : defined.sh<string[]>, cd   : defined.sh<void>    , pwd   : defined.sh<string>
-                mkdir: defined.sh<void>    , rm   : defined.sh<void>    , rmdir : defined.sh<void>
-                touch: defined.sh<void>    , grep : defined.sh<string[]>, chmod : defined.sh<void>
-                dirs : defined.sh<string[]>, pushd: defined.sh<string[]>, popd  : defined.sh<void>
-                which: defined.sh<string>  , echo : defined.sh<string>  , mv    : defined.sh<void>
-                uniq : defined.sh<string>  , sort : defined.sh<string>  , whoami: defined.sh<string>
-                cp   : defined.sh<void>
+                cat  : defined.asm<string>  , head : defined.asm<string>  , tail  : defined.asm<string>
+                ls   : defined.asm<string[]>, cd   : defined.asm<void>    , pwd   : defined.asm<string>
+                mkdir: defined.asm<void>    , rm   : defined.asm<void>    , rmdir : defined.asm<void>
+                touch: defined.asm<void>    , grep : defined.asm<string[]>, chmod : defined.asm<void>
+                dirs : defined.asm<string[]>, pushd: defined.asm<string[]>, popd  : defined.asm<void>
+                which: defined.asm<string>  , echo : defined.asm<string>  , mv    : defined.asm<void>
+                uniq : defined.asm<string>  , sort : defined.asm<string>  , whoami: defined.asm<string>
+                cp   : defined.asm<void>
         }
 }
 
 export function load_binary() {
         const commands: Record<string, any> = { };
-        const baseURL = path.resolve(module.path, 'asm');
+        const baseURL = path.resolve(module.path, 'bin');
 
-        for(const segment of stream.readdirSync(baseURL)) {
+        for(const segment of fs.readdirSync(baseURL)) {
                 if(basename(segment) === 'exec') continue;
 
                 const command = path.join(baseURL, segment);
                 commands[ basename(command) ] = require(command)[ basename(command) ];
         }
 
-        const internal: Record<string, any> = require('./asm/exec').default;
+        const internal: Record<string, any> = require('binary/exec').default;
         for(const segment in commands) {
                 internal[segment as keyof typeof internal] = commands[segment];
         }
@@ -85,11 +83,10 @@ export function load_binary() {
         global.$ = internal as typeof global.$;
 }
 
-export const restore = (path: string) => path.replace(/\/\*\/?/g, '');
 export const basename = (input: string) => path.basename(input).replace(/\.\w+$/, '');
 
-void function setup() {
-        load_binary()
+void function main() {
+        access_module(), load_binary();
 }()
 
 export default global.$;

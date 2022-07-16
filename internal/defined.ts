@@ -1,10 +1,11 @@
-import { UnixExtension } from './extension'
+import { UnixExtension } from 'internal/extension'
 
-export type sh<stdout> = (main: TemplateStringsArray, ...args: any[]) =>
+export type asm<stdout> = (main: TemplateStringsArray, ...args: any[]) =>
         stdout extends void ? void : UnixExtension<stdout>
 
-export type sh_option = {
-        short?: string | string[], long?: string | string[], input?: string, description?: string   
-}
 
-export type sh_options = sh_option[]
+export type binary_option = Partial<{
+        short: string | string[], long: string | string[], input: string, description: string
+}>
+
+export type binary_options = binary_option[];

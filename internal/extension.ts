@@ -1,11 +1,11 @@
-import * as defined from './defined'
-import { interpret } from './interpreter'
+import * as defined from 'internal/defined'
+import { interpret } from 'internal/interpreter'
 
-import { grep_options } from '../asm/grep'
-import { head_options } from '../asm/head'
-import { tail_options } from '../asm/tail'
-import { uniq_options } from '../asm/uniq'
-import { sort_options, default_sort, insentive_sort, numeric_sort } from '../asm/sort'
+import { grep_options } from 'binary/grep'
+import { head_options } from 'binary/head' 
+import { tail_options } from 'binary/tail'
+import { uniq_options } from 'binary/uniq'
+import { sort_options, default_sort, insentive_sort, numeric_sort } from 'binary/sort'
 
 class _UnixExtension<T> {
         constructor(public readonly stdout: T) {
@@ -13,7 +13,7 @@ class _UnixExtension<T> {
                 Object.setPrototypeOf(this, props) // merge prototypes -> typeof stdout + UnixExtension.
         }
 
-        grep: defined.sh<string[]> = (main, ...args) => {
+        grep: defined.asm<string[]> = (main, ...args) => {
                 const { options, stdin } = interpret(grep_options, main, args);
 
                 const regex = new RegExp(stdin.shift() || '', options['ignore-case'] ? 'i' : '');
@@ -35,7 +35,7 @@ class _UnixExtension<T> {
                 return new UnixExtension(output);
         }
 
-        head: defined.sh<string> = (main, ...args) => {
+        head: defined.asm<string> = (main, ...args) => {
                 const { options } = interpret(head_options, main, args);
                 
                 const num = parseInt(options.lines || options.bytes) || 10;
@@ -45,7 +45,7 @@ class _UnixExtension<T> {
                 return new UnixExtension(res);
         }
 
-        tail: defined.sh<string> = (main, ...args) => {
+        tail: defined.asm<string> = (main, ...args) => {
                 const { options } = interpret(tail_options, main, args);
                 
                 const num = parseInt(options.lines || options.bytes) || 10;
@@ -58,7 +58,7 @@ class _UnixExtension<T> {
                 return new UnixExtension(res);
         }
 
-        uniq: defined.sh<string> = (main, ...args) => {
+        uniq: defined.asm<string> = (main, ...args) => {
                 const { options } = interpret(uniq_options, main, args);
 
                 const compare = (reference: string, compare: string) => {
@@ -81,7 +81,7 @@ class _UnixExtension<T> {
                 return new UnixExtension(res);
         }
 
-        sort: defined.sh<string> = (main, ...args) => {
+        sort: defined.asm<string> = (main, ...args) => {
                 const { options } = interpret(sort_options, main, args);
 
                 const sorted = this.get_stdout().split('\n').sort(options.numeric_sort ? numeric_sort : options.ignore_case ? insentive_sort : default_sort);
@@ -96,14 +96,15 @@ class _UnixExtension<T> {
         }
 }
 
-export function get_prototypes<T>(object: T) {
-        const res    : Record<string, any> = {}
+export function get_prototypes<T> (object: T) {
+        const res: Record<string, any> = { }
         const protos = Object.getOwnPropertyNames(Object.getPrototypeOf(object))
 
         for(const proto of protos) {
                 const segment = object[proto as keyof typeof object]
                 res[proto]    = segment instanceof Function ? segment.bind(object) : segment
         }
+
         return res
 }
 

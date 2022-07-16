@@ -1,9 +1,8 @@
-import * as defined from './defined'
-import wcm from './wcm'
+import * as defined from 'internal/defined'
+import { InternalError } from 'internal/exception'
+import wcm from 'internal/wcm'
 
-import { InternalError } from './exception'
-
-export function interpret(token: defined.sh_options, main: TemplateStringsArray, args: Array<any>) {
+export function interpret(token: defined.binary_options, main: TemplateStringsArray, args: Array<any>) {
         const shell = args.reduce<string>(
                 function reducer(previous, current, index) {
                         const input = Array.isArray(current) ? current.map(element => `'${element}'`).join(' ') : current;
@@ -11,7 +10,7 @@ export function interpret(token: defined.sh_options, main: TemplateStringsArray,
                 }, main[0]
         )
 
-        let sync_options: defined.sh_option | undefined;
+        let sync_options: defined.binary_option | undefined;
         const options: Record<string, any> = {}, inputs: Array<string> = [];
 
         division(shell).forEach(function processor(segment, index, object) {
@@ -57,13 +56,13 @@ export function compose(object: Array<string>, index: number) {
         return object[index];
 }
 
-export const get_head = (option: defined.sh_option) => {
+export const get_head = (option: defined.binary_option) => {
         return option.long && ( typeof option.long === 'string' || option.long.length === 1)
                 ? (<string> option.long).replaceAll('-', '_')
                 : option.short!!.toString().replaceAll(',', '_')
 }
 
-export function generate_man(token: defined.sh_options) {
+export function generate_man(token: defined.binary_options) {
         return token.map(function mapper(option) {
                 const short = option.short ? `-${ typeof option.short === 'string' ? option.short : option.short.join(', -') }` : '';
                 const long = option.long ? `--${ typeof option.long === 'string' ? option.long : option.long.join(', --') }` : '';

@@ -1,5 +1,5 @@
-import stream from 'fs'
-import path from 'path'
+import path from 'node:path'
+import fs from 'node:fs'
 
 export const constants = {
         RESET: '\x1b[0m', NEW_LINE: '\n', TAB: '\t',
@@ -26,7 +26,7 @@ export class InternalError extends Error {
         }
 
         private render_code(storage: string, line: number) {
-                const content = stream.readFileSync(storage, 'utf-8').replace(/\r/g, '').split('\n');
+                const content = fs.readFileSync(storage, 'utf-8').replace(/\r/g, '').split('\n');
 
                 const code = content.map(
                         function mapper(input, index) {

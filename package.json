@@ -1,28 +1,28 @@
 {
-    "name": "@seung_h/node-sh",
-    "version": "1.0.9",
+    "name": "node-sh",
+    "version": "1.1.0",
     "description": "Portable implementations and executions of bash commands for node.js",
     "main": "dist/node-sh.js",
     "exports": {
         ".": {
             "default": "./dist/node-sh.js",
-            "types": "./node-sh.ts"
+            "types": "./dist/node-sh.d.ts"
         }
     },
-    "types": "node-sh.ts",
+    "types": "dist/node-sh.d.ts",
     "author": "seung_h <delspace0011@gmail.com> (https://github.com/seungh06)",
     "license": "MIT",
     "scripts": {
         "build": "tsc",
         "test": "npm run build && node dist/test.js"
     },
-    "devDependencies": {
-        "@types/node": "^18.0.4"
-    },
     "repository": {
         "type": "git",
         "url": "https://github.com/seungh06/node-sh.git"
     },
     "homepage": "https://github.com/seungh06/node-sh",
-    "bugs": "https://github.com/seungh06/node-sh/issues"
+    "bugs": "https://github.com/seungh06/node-sh/issues",
+    "devDependencies": {
+        "@types/node": "^18.0.5"
+    }
 }
