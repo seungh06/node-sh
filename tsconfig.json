@@ -5,13 +5,12 @@
 
         "strict": true,
         "esModuleInterop": true,
-        "declaration": true,
-
+        
         "baseUrl": "./",
         "outDir": "dist",
         "paths": {
-            "internal/*": [ "internal/*" ],
-            "binary/*": [ "bin/*" ]
+            "internal/*": [ "internal/*", "dist/internal/*" ],
+            "binary/*": [ "bin/*", "dist/bin/*" ]
         }
     }
 }

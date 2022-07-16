@@ -14,7 +14,7 @@
     "license": "MIT",
     "scripts": {
         "build": "tsc",
-        "test": "npm run build && node dist/test.js"
+        "test": "tsc && node dist/test.js"
     },
     "repository": {
         "type": "git",
