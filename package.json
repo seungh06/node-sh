@@ -13,7 +13,7 @@
     "author": "seung_h <delspace0011@gmail.com> (https://github.com/seungh06)",
     "license": "MIT",
     "scripts": {
-        "build": "tsc",
+        "build": "tsc --declaration",
         "test": "tsc && node dist/test.js"
     },
     "repository": {
