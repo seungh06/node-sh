@@ -66,8 +66,8 @@ declare global {
         }
 }
 
-export function load_sh() {
-        let commands: Record<string, any> = { };
+export function load_binary() {
+        const commands: Record<string, any> = { };
         const baseURL = path.resolve(module.path, 'asm');
 
         for(const segment of stream.readdirSync(baseURL)) {
@@ -77,10 +77,11 @@ export function load_sh() {
                 commands[ basename(command) ] = require(command)[ basename(command) ];
         }
 
-        const internal: Record<string, any> = require('./asm/exec').default
-        for(const segement in commands) {
-                internal[segement as keyof typeof internal] = commands[segement];
+        const internal: Record<string, any> = require('./asm/exec').default;
+        for(const segment in commands) {
+                internal[segment as keyof typeof internal] = commands[segment];
         }
+
         global.$ = internal as typeof global.$;
 }
 
@@ -88,7 +89,7 @@ export const restore = (path: string) => path.replace(/\/\*\/?/g, '');
 export const basename = (input: string) => path.basename(input).replace(/\.\w+$/, '');
 
 void function setup() {
-        load_sh()
+        load_binary()
 }()
 
 export default global.$;
