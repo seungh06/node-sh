@@ -1,6 +1,6 @@
 {
     "name": "@seung_h/node-sh",
-    "version": "1.1.0",
+    "version": "1.2.1",
     "description": "Portable implementations and executions of bash commands for node.js",
     "main": "dist/node-sh.js",
     "exports": {
@@ -20,10 +20,13 @@
     "homepage": "https://github.com/seungh06/node-sh",
     "bugs": "https://github.com/seungh06/node-sh/issues",
     "keywords": [
-        "shell", "bash",
-        "exec", "process",
+        "shell",
+        "bash",
+        "exec",
+        "process",
         "unix",
-        "bin", "binary"
+        "bin",
+        "binary"
     ],
     "devDependencies": {
         "@types/node": "^18.0.5"
