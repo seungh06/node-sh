@@ -19,6 +19,12 @@
     },
     "homepage": "https://github.com/seungh06/node-sh",
     "bugs": "https://github.com/seungh06/node-sh/issues",
+    "keywords": [
+        "shell", "bash",
+        "exec", "process",
+        "unix",
+        "bin", "binary"
+    ],
     "devDependencies": {
         "@types/node": "^18.0.5"
     }

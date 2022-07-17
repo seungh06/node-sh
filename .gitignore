@@ -51,6 +51,8 @@ web_modules/
 # Optional npm cache directory
 .npm
 
+.npmignore
+
 # Optional eslint cache
 .eslintcache
 
@@ -114,3 +116,4 @@ out
 .pnp.*
 
 test.ts
+dist/
