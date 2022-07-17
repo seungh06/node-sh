@@ -8,8 +8,8 @@ Node-sh is a bash command implementation and os shell command execution for node
 
 ### 🕹 Install
 ```bash
- $ yarn add node-sh
- $ npm install node-sh
+ $ yarn add node-sh@npm:@seung_h/node-sh
+ $ npm install node-sh@npm:@seung_h/node-sh
 ```
 
 ## 🔥 Features
