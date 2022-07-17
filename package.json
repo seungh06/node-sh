@@ -4,16 +4,13 @@
     "description": "Portable implementations and executions of bash commands for node.js",
     "main": "dist/node-sh.js",
     "exports": {
-        ".": {
-            "default": "./dist/node-sh.js",
-            "types": "./dist/node-sh.d.ts"
-        }
+        ".": "./dist/node-sh.js"
     },
     "types": "dist/node-sh.d.ts",
     "author": "seung_h <delspace0011@gmail.com> (https://github.com/seungh06)",
     "license": "MIT",
     "scripts": {
-        "build": "tsc --declaration",
+        "build": "tsc --declaration && node dist/build.js",
         "test": "tsc && node dist/test.js"
     },
     "repository": {

@@ -1,4 +1,3 @@
-import * as defined from 'internal/defined';
 export declare const node: Record<string, any>;
 export declare const modules: Record<string, string>;
 export declare function access_module(): void;
@@ -68,3 +67,29 @@ declare const _default: defined.asm<string> & {
     cp: defined.asm<void>;
 };
 export default _default;
+
+declare namespace defined {
+	export type asm<stdout> = (main: TemplateStringsArray, ...args: any[]) => stdout extends void ? void : UnixExtension<stdout>;
+	export type binary_option = Partial<{
+	    short: string | string[];
+	    long: string | string[];
+	    input: string;
+	    description: string;
+	}>;
+	export type binary_options = binary_option[];
+	
+}
+declare class _UnixExtension<T> {
+    readonly stdout: T;
+    constructor(stdout: T);
+    grep: defined.asm<string[]>;
+    head: defined.asm<string>;
+    tail: defined.asm<string>;
+    uniq: defined.asm<string>;
+    sort: defined.asm<string>;
+    private get_stdout;
+}
+export declare function get_prototypes<T>(object: T): Record<string, any>;
+export declare type UnixExtension<T> = _UnixExtension<T> & T;
+export declare const UnixExtension: new <T>(stdout: T) => UnixExtension<T>;
+export {};
