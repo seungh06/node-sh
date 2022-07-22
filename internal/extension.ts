@@ -1,5 +1,8 @@
 import * as defined from 'internal/defined'
+import { InternalError } from 'internal/exception'
 import { interpret } from 'internal/interpreter'
+import path from 'node:path'
+import fs from 'node:fs'
 
 import { grep_options } from 'binary/grep'
 import { head_options } from 'binary/head' 
@@ -87,6 +90,28 @@ class _UnixExtension<T> {
                 const sorted = this.get_stdout().split('\n').sort(options.numeric_sort ? numeric_sort : options.ignore_case ? insentive_sort : default_sort);
                 const res = (options.reverse ? sorted.reverse() : sorted).join('\n');
                 return new UnixExtension(res);
+        }
+
+        write(file: string) {
+                const parent = path.dirname(file);
+                if(!fs.existsSync(parent)) {
+                        throw new InternalError(`-node: \`${file}\`: No such file or directory`);
+                }
+
+                if(global.$.env.noclobber && fs.existsSync(file)) {
+                        throw new InternalError(`-node: \`${file}\`: cannot overwrite existing file`);
+                }
+
+                fs.writeFileSync(file, this.get_stdout());
+        }
+
+        append(file: string) {
+                const parent = path.dirname(file);
+                if(!fs.existsSync(parent)) {
+                        throw new InternalError(`-node: \`${file}\`: No such file or directory`);
+                }
+                
+                fs.appendFileSync(file, this.get_stdout());
         }
 
         private get_stdout() {

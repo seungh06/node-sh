@@ -46,7 +46,7 @@ export const header = (path: string) => path.replace(/\/\*/g, '');
 
 declare global {
         var $: defined.asm<string> & {
-                env: {
+                env: Record<string, any> & {
                         verbose    : boolean
                         prefix     : string
                         shell      : string | boolean
@@ -60,7 +60,7 @@ declare global {
                 dirs : defined.asm<string[]>, pushd: defined.asm<string[]>, popd  : defined.asm<void>
                 which: defined.asm<string>  , echo : defined.asm<string>  , mv    : defined.asm<void>
                 uniq : defined.asm<string>  , sort : defined.asm<string>  , whoami: defined.asm<string>
-                cp   : defined.asm<void>
+                cp   : defined.asm<void>    , ln   : defined.asm<void>    , set   : defined.asm<string>
         }
 }
 

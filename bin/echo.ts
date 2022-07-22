@@ -18,5 +18,7 @@ export const echo: defined.asm<string> = (main, ...args) => {
         const { options, stdin } = interpret(echo_options, main, args);
         
         const output = stdin.join(' ') + (options.n ? '' : '\n');
+        process.stdout.write(output);
+        
         return new UnixExtension(output);
 }

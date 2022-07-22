@@ -13,9 +13,9 @@ Node-sh is a bash command implementation and os shell command execution for node
 ```
 
 ## 🔥 Features
-- TypeScript based, zero dependencies. 📦
+- TypeScript based, light weight `8kb`, zero dependencies. 📦
 - Simple command execution with user environment.
-- **23** bash commands implemented.
+- **25** bash commands implemented.
 - Each command supports type-based JavaScript API and pipe commands.
 - Provides details about exceptions in user command with rendered code. 
 
@@ -34,7 +34,7 @@ Designed to be easy to use, node-sh uses only one interface. it can execute comm
   const exec = $ `ls -al | grep 'node-sh'`
 ```
 
-> **Caution**: This function uses the [child process](https://nodejs.org/api/child_process.html) module to execute commands directly.
+> **Warning**: This function uses the [child process](https://nodejs.org/api/child_process.html) module to execute commands directly.
 
 **Environments**
 ```typescript
@@ -57,7 +57,7 @@ Node-sh has implemented syntax and options, etc. similar to `bash` based on [lin
 </details>
 
 ## 🔗 UnixExtension
-Each function (except void functions) returns stdout to `UnixExtension` class that can use JavaScript API according to the type of stdout or pipe functions such as grep, sort, uniq, etc.
+Each function (except void functions) returns `UnixExtension` class that can use JavaScript API according to the type of stdout, redirection and pipe functions like grep, sort, etc.
 
 <details>
   <summary><b>✏️ Show Usage Example</b></summary>

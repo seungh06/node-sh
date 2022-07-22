@@ -16,7 +16,7 @@ export function interpret(token: defined.binary_options, main: TemplateStringsAr
         division(shell).forEach(function processor(segment, index, object) {
                 const decomposed = segment.match(/(--|-)([a-zA-Z]*(?:-[a-zA-Z]*)?)/);
 
-                if(decomposed instanceof Array && decomposed[0] !== decomposed[1] && segment.startsWith('-')) {
+                if(decomposed instanceof Array && decomposed[0] !== decomposed[1] && segment.startsWith('-') && token.length > 0) {
                         const inputs = decomposed[1].length === 1 ? decomposed[2].split('') : [ decomposed[2] ] ;
                         for(const input of inputs) {
                                 const found = token.find(token => {
@@ -33,7 +33,19 @@ export function interpret(token: defined.binary_options, main: TemplateStringsAr
                         }
                 } else if(sync_options) {
                         options[ get_head(sync_options) ] = compose(object, index), sync_options = undefined;
-                } else inputs.push(...wcm(compose(object, index)));
+                } else {
+                        let composed = compose(object, index);
+                        const include_env = composed.includes('$');
+
+                        if(include_env) {
+                                Object.keys(global.$.env).forEach(env => {
+                                        composed = composed.replaceAll(`$` + env, global.$.env[env]);
+                                })
+                        }
+
+                        const glob = global.$.env.noglob ? [ composed ] : wcm(composed);
+                        inputs.push(...glob);
+                }
         })
 
         return { options, stdin: inputs };
