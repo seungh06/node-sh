@@ -20,72 +20,106 @@ Node-sh is a bash command implementation and os shell command execution for node
 - Provides details about exceptions in user command with rendered code. 
 
 ## 📌 Import
-If the `$` namespace conflicts, you can use named import rather than global import.
 ```typescript
  import 'node-sh' // $.commands
- import bash from 'node-sh' // bash.commands
+ import bash from 'node-sh' // bash.commands (named)
 ```
 
-## 📝 Commands
-Designed to be easy to use, node-sh uses only one interface. it can execute commands and implementations.
-
-### 🔐 Execute
+## 📝 Usage
 ```typescript
-  const exec = $ `ls -al | grep 'node-sh'`
-```
-
-> **Warning**: This function uses the [child process](https://nodejs.org/api/child_process.html) module to execute commands directly.
-
-**Environments**
-```typescript
- $.env: {
-     verbose    : boolean           = false
-     prefix     : string            = ''
-     shell      : string | boolean  = true
-     max_buffer : number            = 200 * 1024 * 1024
- } // structures
+ import 'node-sh'
  
- $.env.shell = $.which `git`
+ const version = $.cat `package.json`.grep `version`
+ 
+ if(version.includes('dev') || process.env.dev) {
+     $.cp `-r bin asm`
+     $.chmod `--reference bin/exec asm/*`
+     $.rm `-rf bin`
+ }
+ 
+ const bash = $.which `bash`
+ $.set `shell=${ bash }` //$.env.shell = bash.stdout
+ $.echo `execution environment: $shell`
+ 
+ $.chmod `u+x build.sh`
+ $ `build.sh` // exec
 ```
 
-### 💡 Implement
-Node-sh has implemented syntax and options, etc. similar to `bash` based on [linux man page](https://man7.org/linux/man-pages/) to improve the user-experience.
+## 🔐 Command Reference
+All commands run synchronously and return `UnixExtension` class (except void functions) that can use JavaScript API, redirection and pipe functions. Interpreter accept glob characters and change `$variable` to environment variable, `${...}` expression to escape and quotes. etc.
 
-<details>
-  <summary><b>📁 Show Command References</b></summary>
+### ``$ `command` ``
+Executes a command directly in the shell specified by the `shell` variable, using [child process](https://nodejs.org/api/child_process.html) module.
+```typescript
+ const exec = $ `ls -al | grep node-sh` // UnixExtension<string>
+```
 
-</details>
+### ``$.cat `[OPTION]... [FILE]...` ``
+Return the contents of a given FILE or concatenated FILE(s) to standard output.
 
-## 🔗 UnixExtension
-Each function (except void functions) returns `UnixExtension` class that can use JavaScript API according to the type of stdout, redirection and pipe functions like grep, sort, etc.
+ - `-n, --number` : number all output lines.
+ - `-E, --show-ends` : display `$` at end of each line.
+ - `-T, --show-tabs` : display `TAB` characters as `^I`
 
-<details>
-  <summary><b>✏️ Show Usage Example</b></summary>
+```typescript
+ const cat = $.cat `-nE src/*.ts` // UnixExtension<string>
+```
+
+### ``$.cd `[DIR]` ``
+Change the current directory to `DIR`. Change to the previous directory using the `-` or `$OLDPWD` variable. If no stdin is supplied or `-`, change to `HOME` directory.
+```typescript
+ $.cd `src`
+ $.cd `$OLDPWD/dist`
+```
+
+### ``$.chmod `[OPTION]... MODE[RFILE] FILE...` ``
+Change the mode of each FILE to `MODE`. If `reference` options is supplied, change the mode of each FILE to that of `RFILE`.
+
+ - `-c, --changes` : report only when a change is made.
+ - `--reference=RFILE` : use `RFILE`'s mode instead of `MODE` values.
+ - `-R, --recursive` : change files and directories recursively.
+
+```typescript
+ $.chmod `755 build.sh`
+ $.chmod `-R a=rwx dist`
+ $.chmod `--reference test.sh build.sh`
+```
+
+### ``$.cp `[OPTION]... SOURCE... DEST[DIRECTORY]` ``
+Copy `SOURCE` to `DEST`, or multiple `SOURCE(s)` to `DIRECTORY`.
+
+ - `-b, --backup` : make a backup of each existing destination file.
+ - `-S, --suffix=SUFFIX` : override the usual backup suffix (`~`).
+ - `-l, --dereference` : always follow symbolic links in `SOURCE`.
+ - `-p, --no-dereference` : never follow symbolic links in `SOURCE`.
+ - `-r, -R, --recursive` : copy directories recursively.
+ - `-u, --update` : copy only when the `SOURCE` file is newer than the destination file or when the destination file is missing.
+ 
+```typescript
+ $.cp `test.ts src`
+ $.cp `test.ts test1.ts src`
+ $.cp `-rbS BACKUP_ build src` // backup suffix = BACKUP_
+```
+ 
+### ``$.dirs `[+N] [N]` ``
+Display the list of currently remembered directories. Add the directory stack using the `pushd` command and back up with the `popd` command.
+ 
+ - `-c` : clear the directory stack by deleting all of the elements.
   
-  #### 📖 **Check the module has a default export.**
-  ```typescript
-   import 'node-sh'
-   
-   const output = $.cat `src/test.ts`.includes('export default')
-  ```
-  
-  #### 📖 **Get only directories.**
-  ```typescript
-   import 'node-sh'
-     
-   // Use JavaScript API
-   const api = $.ls `-al`.filter(data => data.startsWith('d'))
-     
-   // Use UnixExtension
-   const extension = $.ls `-al`.grep `^d`
-  ```
-</details>
+ Arguments:
+ - `+N` : Displays the `N`th entry counting from the left of the list when invoked without options, starting with zero.
+ - `N` : Displays the `N`th entry counting from the right of the list when invoked without options, starting with zero.
 
-##  🛠  Exceptions
-Node-sh provides detail of the exceptions that occurred in user commands or internal and suggests solutions for them.
-> **Note**: It is only used for errors handled within the module and cannot be used externally.
+```typescript
+ const dirs = $.dirs `` // UnixExtension<string[]> 
+```
 
-![exception](https://user-images.githubusercontent.com/41784860/177758975-93b8b637-8906-457d-9424-354428ffbc82.png)
-
-## 📋 License
-Distributed under the MIT License. See ```LICENSE``` for more information.
+### ``$.echo `[OPTION]... [STRING]...` ``
+Echo the STRING(s) to standard output and print it.
+ 
+ - `-n` : do not output the trailing newline.
+ 
+```typescript
+ const echo = $.echo `Hello World!` // UnixExtension<string>
+ $.echo `Print`
+```
