@@ -54,6 +54,9 @@ Executes a command directly in the shell specified by the `shell` variable, usin
  const exec = $ `ls -al | grep node-sh` // UnixExtension<string>
 ```
 
+<details>
+    <summary><b>✏️ Show Command References</b></summary>
+
 ### ``$.cat `[OPTION]... [FILE]...` ``
 Return the contents of a given FILE or concatenated FILE(s) to standard output.
 
@@ -73,7 +76,7 @@ Change the current directory to `DIR`. Change to the previous directory using th
 ```
 
 ### ``$.chmod `[OPTION]... MODE[RFILE] FILE...` ``
-Change the mode of each FILE to `MODE`. If `reference` options is supplied, change the mode of each FILE to that of `RFILE`.
+Change the mode of each FILE to `MODE`. If `reference` option is supplied, change the mode of each FILE to that of `RFILE`.
 
  - `-c, --changes` : report only when a change is made.
  - `--reference=RFILE` : use `RFILE`'s mode instead of `MODE` values.
@@ -112,6 +115,9 @@ Display the list of currently remembered directories. Add the directory stack us
 
 ```typescript
  const dirs = $.dirs `` // UnixExtension<string[]> 
+ 
+ $.dirs `-c`
+ $.dirs `+3`
 ```
 
 ### ``$.echo `[OPTION]... [STRING]...` ``
@@ -123,3 +129,124 @@ Echo the STRING(s) to standard output and print it.
  const echo = $.echo `Hello World!` // UnixExtension<string>
  $.echo `Print`
 ```
+
+### ``$.grep  `[OPTION]... PATTERN [FILE]...` ``
+Search for `PATTERN(REGEX)` in each `FILE`.
+
+ - `-i, --ignore-case` : ignore case distinctions in patterns and data.
+ - `-v, --invert-match` : select non-matching lines.
+ - `-n, --line-number` : print line number with output lines.
+ - `-H, --with-filename` : print file name with output lines.
+ - `-r, --recursive` : read all files under each directory, recursively.
+ - `-l, --files-with-matches` : print only names of `FILE`s with selected lines.
+ 
+``` typescript
+ const grep = $.grep `-i ^import src/*.ts` // UnixExtension<string[]>
+```
+
+### ``$.head  `[OPTION]... [FILE]...` ``
+Print the first `10` lines of each `FILE` to standard output. If multiple files are supplied, prepend each with a header indicating the file name.
+ - `-c, --bytes=NUM` : print the first `NUM` bytes of each file
+ - `-n, --lines=NUM` : print the first `NUM` lines instead of the first `10`.
+ - `-q, --quiet, --silent` : never print headers giving file names.
+ 
+```typescript
+ const head = $.head `-n 15 src/test.ts` // UnixExtension<string>
+ 
+ $.head `-c 100 src/test.ts`
+ $.head `-q src/*.ts`
+```
+
+### ``$.ln  `[OPTION]... SOURCE DEST` ``
+By default, create hard link from `SOURCE` to `DEST`. If `-s` or `--symbolic` option is supplied, create symbolic link.
+
+ - `-b, --backup` : make a backup of each existing destination file.
+ - `-f, --force` : remove existing destination files.
+ - `-s, --symbolic` : make symbolic links instead of hard links.
+ - `-S, --suffix=SUFFIX` : override the usual backup suffix(`~`).
+ 
+```typescript
+ $.ln `file link`
+ $.ln `-bS BACKUP_ file exist` // backup suffix = BACKUP_
+```
+
+### ``$.ls  `[OPTION]... [FILE]...` ``
+List information about the `FILE(s)`. If `FILE` is not supplied, list information about the current directory.
+
+ - `-a, --all` : do not ignore entries starting with `.`.
+ - `-A, --almost-all` : do not list implied `.` and `..`.
+ - `-d, --directory` : list directories themselves, not their contents.
+ - `-l` : use a long listing format.
+ - `-L, --dereference` : show information for the file the link references rather than for the link itself.
+ - `-r, --reverse` : reverse order while sorting.
+ - `-R, --recursive` : list subdirectories recursively.
+ 
+```typescript
+ const ls = $.ls `-al`
+ 
+ $.ls `-R src dist`
+ $.ls `-l src/**/*.ts`
+```
+ 
+### ``$.mkdir  `[OPTION]... DIRECTORY...` ``
+Create the `DIRECTORY(ies)`, if they do not already exist.
+
+ - `-m, --mode=MODE` : set file mode (must be octal - unmask).
+ - `-p, --parents` : no error if existing, make parent directories as needed.
+
+```typescript
+ $.mkdir `test test1`
+ $.mkdir `-m 777 test`
+ $.mkdir `-p test/test1` // if 'test' is not exist, make it.
+```
+
+### ``$.mv  `[OPTION]... SOURCE... DEST[DIRECTORY]` ``
+Rename `SOURCE` to `DEST`, or move `SOURCE(s)` to `DIRECTORY`.
+ 
+ - `-b, --backup` : make a backup of each existing destination file.
+ - `-S, --suffix=SUFFIX` : override the usual backup suffix(`~`).
+ 
+```typescript
+ $.mv `file file_renamed`
+ $.mv `file file1 dir` // rename to 'dir/file', 'dir/file1'.
+```
+
+### ``$.popd `[-n] [+N | N]` ``
+Remove directories from stack. If no arguments are supplied, remove the top directory from the stack, and changes to the new top directory.
+
+ - `-n` : Suppresses the normal change of directory when removing directories from the stack, so only the stack is manipulated.
+ 
+Arguments:
+ - `+N` : Removes the `N`th entry counting from the left of the list, starting with zero.
+ - `N` : Removes the `N`th entry counting from the right of the list, starting with zero.
+ 
+```typescript
+ const popd = $.popd `` // UnixExtension<string[]> - directory stack.
+ $.popd `-n`
+ $.popd `+3`
+```
+
+### ``$.pushd `[-n] [+N | N | DIR]` ``
+Add directories to stack. If no arguments are supplied, exchanges the top two directories.
+
+ - `-n` : Suppresses the normal change of directory when adding directories to the stack, so only the stack is manipulated.
+ 
+Arguments:
+ - `+N` : Rotates the stack so that the `N`th directory counting from the left of the list, starting with zero is at the top.
+ - `N` : Rotates the stack so that the `N`th directory counting from the right of the list, starting with zero is at the top.
+ - `DIR` : Adds `DIR` to the directory stack at the top, making it the new current working directory.
+ 
+```typescript
+ const pushd = $.pushd `` // UnixExtension<string[]> - directory stack.
+ $.pushd `-n hello`
+ $.pushd `dir`
+```
+
+### ``$.pwd ` ` ``
+Print the name of the current working directory.
+
+```typescript
+ const pwd = $.pwd `` // UnixExtension<string>
+```
+
+</details>
