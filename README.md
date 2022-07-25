@@ -146,6 +146,7 @@ Search for `PATTERN(REGEX)` in each `FILE`.
 
 ### ``$.head  `[OPTION]... [FILE]...` ``
 Print the first `10` lines of each `FILE` to standard output. If multiple files are supplied, prepend each with a header indicating the file name.
+
  - `-c, --bytes=NUM` : print the first `NUM` bytes of each file
  - `-n, --lines=NUM` : print the first `NUM` lines instead of the first `10`.
  - `-q, --quiet, --silent` : never print headers giving file names.
@@ -249,4 +250,119 @@ Print the name of the current working directory.
  const pwd = $.pwd `` // UnixExtension<string>
 ```
 
+### ``$.rm `[OPTION]... [FILE]...` ``
+Remove (unlink) the `FILE(s)`.
+
+ - `-f, --force` : ignore nonexistent files and arguments, never prompt.
+ - `-r, --recursive` : remove directories and their contents recursively.
+ 
+```typescript
+ $.rm `file`
+ $.rm `file file1 file2`
+ $.rm `-rf dir`
+```
+
+### ``$.rmdir `[OPTION]... DIRECTORY...` ``
+Remove the `DIRECTORY(ies)`, if they are empty.
+ 
+ - `-p, --parents` : remove `DIRECTORY` and its ancestors; `rmdir -p a/b/c` -> `rmdir a/b/c a/b a`
+ 
+```typescript
+ $.rmdir `dir`
+ $.rmdir `-p parent/dir`
+```
+
+### ``$.set `[-fvC]` ``
+Set or unset, change the value of shell variables and attributes. If no arguments or options are supplied, display the names and values of shell variables.
+Using `+` rather than `-` causes these flags to be turned off.
+
+ - `-f` : Disable file name generation (globbing).
+ - `-v` : Print shell input lines as they are read(verbose).
+ - `-C` : If set, disallow existing regular files to be overwritten by redirection(`>`) of output.
+ 
+```typescript
+ const set = $.set ``
+ 
+ $.set `-fC`
+ $.set `+f`
+ $.set `var1=value`
+```
+
+### ``$.sleep  `NUMBER[SUFFIX]` ``
+Pause for `NUMBER` seconds. `SUFFIX` may be 's' for seconds (default), 'm' for minutes, 'h' for hours or 'd' for days.
+
+```typescript
+ $.sleep `5`  // 5 seconds
+ $.sleep `5m` // 5 minutes
+```
+
+### ``$.sort  `[OPTION]... [FILE]...` ``
+Write sorted concatenation of all `FILE(s)` to standard output.
+ 
+ - `-f, --ignore-case` : fold lower case to upper case characters.
+ - `-n, --numeric-sort` : compare according to string numerical value.
+ - `-r, --reverse` : reverse the result of comparisons.
+ 
+```typescript
+ const sort = $.sort `-f file` // UnixExtension<string>
+ $.sort `-r *.ts file`
+```
+
+### ``$.tail  `[OPTION]... [FILE]...` ``
+Print the last `10` lines of each `FILE` to standard output. If multiple files are supplied, prepend each with a header indicating the file name.
+
+ - `-c, --bytes=NUM` : output the last `NUM` bytes; or use `+NUM` to output starting with byte `NUM` of each file.
+ - `-n, --lines=NUM` :  output the last `NUM` lines, instead of the last `10`; or use `+NUM` to output starting with line `NUM`.
+ 
+```typescript
+ const tail = $.tail `-n 15 src/test.ts` // UnixExtension<string>
+ 
+ $.tail `-n +15 src/test.ts`
+ $.tail `*.ts files`
+```
+ 
+### ``$.touch  `[OPTION]... [FILE]...` ``
+Update the access and modification times of each `FIL`E to the current time. A `FILE` argument that does not exist is created empty unless `-c` option is supplied.
+
+ - `-a` : change only the access time.
+ - `-c, --no-create` : do not create any files.
+ - `-d, --date=STRING` : parse `STRING` and use it instead of current time.
+ - `-m` : change only the modification time.
+ - `-r, --reference=RFILE` : use this `RFILE`'s times instead of current time.
+ 
+``` typescript
+ $.touch `not_exist.js`     // create 'not_exist.js'
+ $.touch `exist.js`         // change access and modification times.
+ $.touch `-r file exist.js` // change times of 'exist.js' to 'file's time.
+ $.touch `-d 1234-03-21 exist.js` // change times of 'exist.js' to Mar 21, 1234
+```
+
+### ``$.uniq  `[OPTION]... [INPUT [OUTPUT]]` ``
+Filter adjacent matching lines from `INPUT`, writing to `OUTPUT` or standard output.
+
+ - `-c, --count` : prefix lines by the number of occurrences.
+ - `-d, --repeated` : only print duplicate lines, one for each group.
+ - `-i, --ignore-case` : ignore differences in case when comparing.
+ 
+```typescript
+ const uniq = $.uniq `-c file`
+ 
+ $.uniq `file output` // write to 'output'.
+```
+
+### ``$.which  `[OPTION]...  PROGRAM` ``
+Search an executable or script in the directories listed in the environment variable PATH and print full path to standard output.
+
+ - `-a, --all` : Print all matching executables in PATH, not just the first.
+ 
+```typescript
+ const which = $.which `git` // UnixExtension<string>
+ $.which `-a node`
+```
+
+### ``$.whoami ` ` ``
+Print the user name associated with the current effective user ID.
+```typescript
+ const user = $.whoami `` // UnixExtension<string>
+```
 </details>
