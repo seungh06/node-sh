@@ -313,6 +313,7 @@ Print the last `10` lines of each `FILE` to standard output. If multiple files a
 
  - `-c, --bytes=NUM` : output the last `NUM` bytes; or use `+NUM` to output starting with byte `NUM` of each file.
  - `-n, --lines=NUM` :  output the last `NUM` lines, instead of the last `10`; or use `+NUM` to output starting with line `NUM`.
+ - `-q, --quiet, --silent` : never print headers giving file names.
  
 ```typescript
  const tail = $.tail `-n 15 src/test.ts` // UnixExtension<string>
@@ -366,3 +367,28 @@ Print the user name associated with the current effective user ID.
  const user = $.whoami `` // UnixExtension<string>
 ```
 </details>
+
+## 📐 Environment Variable
+Variables in default structures are used only in the `exec` command. User can set the variable using `set` command or $.env.`name`. All commands change the `$variable` syntax to the value of the variable.
+
+**Default Environments**
+```typescript
+ $.env: {
+     verbose    : boolean           = false
+     prefix     : string            = ''
+     shell      : string | boolean  = true
+     max_buffer : number            = 200 * 1024 * 1024
+ } // default structures
+ 
+ $.env.noglob    : boolean = undefined
+ $.env.noclobber : boolean = undefined
+ $.env.OLDPWD    : string  = undefined
+ ...
+```
+**User Environments**
+```typescript
+ import 'node-sh'
+ 
+ $.set `name=Jack` // $.env.name = 'Jack'
+ $.echo `Hello, $name`
+```
