@@ -369,7 +369,7 @@ Print the user name associated with the current effective user ID.
 </details>
 
 ## 📐 Environment Variable
-Variables in default structures are used only in the `exec` command. User can set the variable using `set` command or $.env.`name`. All commands change the `$variable` syntax to the value of the variable.
+Variables in default structures are used only in the `exec` command. User can set the variable using `set` command or $.env.`name`. All commands change the `$variable` syntax to the value of it.
 
 **Default Environments**
 ```typescript
@@ -389,6 +389,15 @@ Variables in default structures are used only in the `exec` command. User can se
 ```typescript
  import 'node-sh'
  
- $.set `name=Jack` // $.env.name = 'Jack'
- $.echo `Hello, $name`
+ $.set `name=Jack`      // $.env.name = 'Jack'
+ $.echo `Hello, $name`  // Hello, Jack
 ```
+
+##  🛠  Exceptions
+Node-sh provides detail of the exceptions that occurred in user commands or internal and suggests solutions for them.
+> **Note**: It is only used for errors handled within the module and cannot be used externally.
+
+![exception](https://user-images.githubusercontent.com/41784860/177758975-93b8b637-8906-457d-9424-354428ffbc82.png)
+
+## 📋 License
+Distributed under the MIT License. See ```LICENSE``` for more information.
