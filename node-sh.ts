@@ -60,7 +60,8 @@ declare global {
                 dirs : defined.asm<string[]>, pushd: defined.asm<string[]>, popd  : defined.asm<void>
                 which: defined.asm<string>  , echo : defined.asm<string>  , mv    : defined.asm<void>
                 uniq : defined.asm<string>  , sort : defined.asm<string>  , whoami: defined.asm<string>
-                cp   : defined.asm<void>    , ln   : defined.asm<void>    , set   : defined.asm<string>
+                cp   : defined.asm<void>    , ln   : defined.asm<void>    , set   : defined.asm<string>,
+                sleep: defined.asm<void>
         }
 }
 

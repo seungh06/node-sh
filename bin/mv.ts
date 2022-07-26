@@ -45,10 +45,10 @@ export const mv: defined.asm<void> = (main, ...args) => {
                 }
 
                 if(fs.existsSync(destination) && options.backup) {
-                        const roots = destination.split('/');
-                        const basename = (options.suffix || '~') + roots.pop();
+                        const root = destination.split('/');
+                        const basename = (options.suffix || '~') + root.pop();
 
-                        fs.renameSync(destination, roots.concat(basename).join('/'));
+                        fs.renameSync(destination, root.concat(basename).join('/'));
                 }
 
                 fs.renameSync(input, destination);

@@ -17,7 +17,7 @@ export const ls_options: defined.binary_options = [
         },
 
         {
-                short: 'd', long: 'directroy',
+                short: 'd', long: 'directory',
                 description: 'list directories themselves, not their contents'
         },
 

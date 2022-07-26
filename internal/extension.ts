@@ -92,26 +92,26 @@ class _UnixExtension<T> {
                 return new UnixExtension(res);
         }
 
-        write(file: string) {
-                const parent = path.dirname(file);
+        write(target: string) {
+                const parent = path.dirname(target);
                 if(!fs.existsSync(parent)) {
-                        throw new InternalError(`-node: \`${file}\`: No such file or directory`);
+                        throw new InternalError(`-node: \`${target}\`: No such file or directory`);
                 }
 
-                if(global.$.env.noclobber && fs.existsSync(file)) {
-                        throw new InternalError(`-node: \`${file}\`: cannot overwrite existing file`);
+                if(global.$.env.noclobber && fs.existsSync(target)) {
+                        throw new InternalError(`-node: \`${target}\`: cannot overwrite existing file`);
                 }
 
-                fs.writeFileSync(file, this.get_stdout());
+                fs.writeFileSync(target, this.get_stdout());
         }
 
-        append(file: string) {
-                const parent = path.dirname(file);
+        append(target: string) {
+                const parent = path.dirname(target);
                 if(!fs.existsSync(parent)) {
-                        throw new InternalError(`-node: \`${file}\`: No such file or directory`);
+                        throw new InternalError(`-node: \`${target}\`: No such file or directory`);
                 }
                 
-                fs.appendFileSync(file, this.get_stdout());
+                fs.appendFileSync(target, this.get_stdout());
         }
 
         private get_stdout() {

@@ -42,7 +42,7 @@ export const load_stacks = () => {
 }
 
 export const is_index = (input: string) => {
-        return /^[-+]\d+$/.test(input);
+        return /^[+]?\d+$/.test(input);
 }
 
 export const load_index = (input: string) => {

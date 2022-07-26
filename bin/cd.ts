@@ -5,7 +5,6 @@ import { homedir } from 'node:os'
 import fs from 'node:fs'
 
 const node = [ '-node', 'cd' ];
-export let previous_pwd: string | undefined;
 
 export const cd: defined.asm<void> = (main, ...args) => {
         const { stdin } = interpret([ /* EMPTY OPTIONS */ ], main, args);
@@ -22,15 +21,15 @@ export const cd: defined.asm<void> = (main, ...args) => {
                         break;
 
                 case '-':
-                        if(!previous_pwd) {
+                        if(!global.$.env.OLDPWD) {
                                 throw new InternalError('cannot find previous directory.', undefined, 0, node);
                         }
-                        destination = previous_pwd;
+                        destination = global.$.env.OLDPWD;
                         break;
         }
 
         try {
-                previous_pwd = process.cwd();
+                global.$.env.OLDPWD = process.cwd();
                 process.chdir(destination);
         } catch {
                 if(!fs.existsSync(destination)) {
