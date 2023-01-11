@@ -13,7 +13,7 @@ Node-sh is a bash command implementation and os shell command execution for node
 ```
 
 ## 🔥 Features
-- TypeScript based, light weight `8kb`, zero dependencies. 📦
+- TypeScript based, zero dependencies. 📦
 - Simple command execution with user environment.
 - **25** bash commands implemented.
 - Each command supports type-based JavaScript API and pipe commands.
@@ -323,7 +323,7 @@ Print the last `10` lines of each `FILE` to standard output. If multiple files a
 ```
  
 ### ``$.touch  `[OPTION]... [FILE]...` ``
-Update the access and modification times of each `FIL`E to the current time. A `FILE` argument that does not exist is created empty unless `-c` option is supplied.
+Update the access and modification times of each `FILE` to the current time. A `FILE` argument that does not exist is created empty unless `-c` option is supplied.
 
  - `-a` : change only the access time.
  - `-c, --no-create` : do not create any files.
