@@ -25,7 +25,7 @@ class _UnixExtension<T> {
                 if(options.files_with_matches) {
                         output.push('(standard input)');
                 } else {
-                        for(const [ index, segment ] of this.get_stdout().split('\n').entries()) {
+                        for(const [ index, segment ] of this.load_stdout().split('\n').entries()) {
                                 const match = segment.match(regex);
 
                                 if(match && !options.invert_match || !match && options.invert_match) {
@@ -44,7 +44,7 @@ class _UnixExtension<T> {
                 const num = parseInt(options.lines || options.bytes) || 10;
                 const sep = options.bytes ? '' : '\n';
 
-                const res = this.get_stdout().split(sep).slice(0, num).join(sep);
+                const res = this.load_stdout().split(sep).slice(0, num).join(sep);
                 return new UnixExtension(res);
         }
 
@@ -57,7 +57,7 @@ class _UnixExtension<T> {
                 const pnv = (options.lines || options.bytes)?.[0] === '+';
                 const value   = pnv ? num - 1 : -1 * Math.abs(num);
 
-                const res = this.get_stdout().split(sep).slice(value).join(sep);
+                const res = this.load_stdout().split(sep).slice(value).join(sep);
                 return new UnixExtension(res);
         }
 
@@ -70,7 +70,7 @@ class _UnixExtension<T> {
                                 : reference.localeCompare(compare);
                 }
 
-                const res = this.get_stdout().split('\n')
+                const res = this.load_stdout().split('\n')
                         .reduceRight<{ count: number, ln: string }[]>(function processor(output, line) {
                                 if(output.length === 0) return [{ count: 1, ln: line }]
                         
@@ -87,37 +87,36 @@ class _UnixExtension<T> {
         sort: defined.asm<string> = (main, ...args) => {
                 const { options } = interpret(sort_options, main, args);
 
-                const sorted = this.get_stdout().split('\n').sort(options.numeric_sort ? numeric_sort : options.ignore_case ? insentive_sort : default_sort);
+                const sorted = this.load_stdout().split('\n').sort(options.numeric_sort ? numeric_sort : options.ignore_case ? insentive_sort : default_sort);
                 const res = (options.reverse ? sorted.reverse() : sorted).join('\n');
                 return new UnixExtension(res);
         }
 
-        write(target: string) {
-                const parent = path.dirname(target);
-                if(!fs.existsSync(parent)) {
-                        throw new InternalError(`-node: \`${target}\`: No such file or directory`);
-                }
+        redirect(main: TemplateStringsArray, ...args: Array<any>) {
+                const { stdin:
+                        [ operator, target ]  
+                } = interpret([ /* EMPTY OPTIONS */], main, args);
 
-                if(global.$.env.noclobber && fs.existsSync(target)) {
-                        throw new InternalError(`-node: \`${target}\`: cannot overwrite existing file`);
-                }
+                const root = path.dirname(target);
+                if(!fs.existsSync(root)) throw new Error(`-node: \`${ target }\`: No such file or directory`);
 
-                fs.writeFileSync(target, this.get_stdout());
-        }
-
-        append(target: string) {
-                const parent = path.dirname(target);
-                if(!fs.existsSync(parent)) {
-                        throw new InternalError(`-node: \`${target}\`: No such file or directory`);
-                }
+                switch(operator) {
+                        case '>':
+                                if(global.$.env.noclobber && fs.existsSync(target)) {
+                                        throw new InternalError(`-node: \`${target}\`: cannot overwrite existing file`);
+                                }
                 
-                fs.appendFileSync(target, this.get_stdout());
-        }
+                                fs.writeFileSync(target, this.load_stdout());
+                                break;
 
-        private get_stdout() {
-                if(this.stdout instanceof Array) {
-                        return this.stdout.join('\n');
-                } else return `${ this.stdout }`
+                        case '>>':
+                                fs.appendFileSync(target, this.load_stdout());
+                                break;
+                }
+        }
+        
+        private load_stdout() {
+                return this.stdout instanceof Array ? this.stdout.join('\n') : `${ this.stdout }`
         }
 }
 

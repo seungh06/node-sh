@@ -13,7 +13,7 @@ Node-sh is a bash command implementation and os shell command execution for node
 ```
 
 ## 🔥 Features
-- TypeScript based, light weight `8kb`, zero dependencies. 📦
+- TypeScript based, zero dependencies. 📦
 - Simple command execution with user environment.
 - **25** bash commands implemented.
 - Each command supports type-based JavaScript API and pipe commands.
@@ -54,8 +54,14 @@ Executes a command directly in the shell specified by the `shell` variable, usin
  const exec = $ `ls -al | grep node-sh` // UnixExtension<string>
 ```
 
+### ``.redirect `OPERATOR FILE` ``
+Create stdout redirection of executed commands. use `>` operator to overwrite and `>>` operator to insert.
+```typescript
+ $.cat `-n build.sh`.redirect `>> output.txt`
+```
+
 <details>
-    <summary><b>✏️ Show Command References</b></summary>
+    <summary><b>✏️ Show All Command References</b></summary>
 
 ### ``$.cat `[OPTION]... [FILE]...` ``
 Return the contents of a given FILE or concatenated FILE(s) to standard output.
@@ -323,7 +329,7 @@ Print the last `10` lines of each `FILE` to standard output. If multiple files a
 ```
  
 ### ``$.touch  `[OPTION]... [FILE]...` ``
-Update the access and modification times of each `FIL`E to the current time. A `FILE` argument that does not exist is created empty unless `-c` option is supplied.
+Update the access and modification times of each `FILE` to the current time. A `FILE` argument that does not exist is created empty unless `-c` option is supplied.
 
  - `-a` : change only the access time.
  - `-c, --no-create` : do not create any files.
@@ -395,7 +401,7 @@ Variables in default structures are used only in the `exec` command. User can se
 
 ##  🛠  Exceptions
 Node-sh provides detail of the exceptions that occurred in user commands or internal and suggests solutions for them.
-> **Note**: It is only used for errors handled within the module and cannot be used externally.
+
 
 ![exception](https://user-images.githubusercontent.com/41784860/177758975-93b8b637-8906-457d-9424-354428ffbc82.png)
 
