@@ -61,7 +61,7 @@ declare global {
                 which: defined.asm<string>  , echo : defined.asm<string>  , mv    : defined.asm<void>
                 uniq : defined.asm<string>  , sort : defined.asm<string>  , whoami: defined.asm<string>
                 cp   : defined.asm<void>    , ln   : defined.asm<void>    , set   : defined.asm<string>,
-                sleep: defined.asm<void>
+                sleep: defined.asm<void>    , unset: defined.asm<void>
         }
 }
 

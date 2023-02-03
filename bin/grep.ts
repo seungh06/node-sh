@@ -52,7 +52,7 @@ export const grep: defined.asm<string[]> = (main, ...args) => {
                         }
 
                         return get_struct(input)
-                } else return input ;
+                } else return input;
         }).flat()
 
         const res = targets.reduce<string[]>(function processor(output, input) {

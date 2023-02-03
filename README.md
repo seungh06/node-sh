@@ -15,7 +15,7 @@ Node-sh is a bash command implementation and os shell command execution for node
 ## 🔥 Features
 - TypeScript based, zero dependencies. 📦
 - Simple command execution with user environment.
-- **25** bash commands implemented.
+- **26** bash commands implemented.
 - Each command supports type-based JavaScript API and pipe commands.
 - Provides details about exceptions in user command with rendered code. 
 
@@ -54,8 +54,14 @@ Executes a command directly in the shell specified by the `shell` variable, usin
  const exec = $ `ls -al | grep node-sh` // UnixExtension<string>
 ```
 
+### ``.redirect `OPERATOR FILE` ``
+Create stdout redirection of executed commands. use `>` operator to overwrite and `>>` operator to insert.
+```typescript
+ $.cat `-n build.sh`.redirect `>> output.txt`
+```
+
 <details>
-    <summary><b>✏️ Show Command References</b></summary>
+    <summary><b>✏️ Show All Command References</b></summary>
 
 ### ``$.cat `[OPTION]... [FILE]...` ``
 Return the contents of a given FILE or concatenated FILE(s) to standard output.
@@ -351,6 +357,14 @@ Filter adjacent matching lines from `INPUT`, writing to `OUTPUT` or standard out
  $.uniq `file output` // write to 'output'.
 ```
 
+### ``$.unset  `name...` ``
+Each environment variable specified by `name` shall be unset.
+
+``` typescript
+ $.set `user=Test pass=1234` 
+ $.unset `user pass`
+```
+
 ### ``$.which  `[OPTION]...  PROGRAM` ``
 Search an executable or script in the directories listed in the environment variable PATH and print full path to standard output.
 
@@ -395,7 +409,7 @@ Variables in default structures are used only in the `exec` command. User can se
 
 ##  🛠  Exceptions
 Node-sh provides detail of the exceptions that occurred in user commands or internal and suggests solutions for them.
-> **Note**: It is only used for errors handled within the module and cannot be used externally.
+
 
 ![exception](https://user-images.githubusercontent.com/41784860/177758975-93b8b637-8906-457d-9424-354428ffbc82.png)
 
