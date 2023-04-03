@@ -4,7 +4,7 @@
 [![typescript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=fff)](https://www.typescriptlang.org/)
 [![license](https://img.shields.io/badge/license-MIT-9999FF?style=for-the-badge)](/LICENSE)
 
-Node-sh is a bash command implementation and os shell command execution for node.js that runs on mac os, linux and windows. It makes you easier to execute your os shell commands. implement bash commands and functionalize it.
+Node-sh is a bash command implementation and os shell command execution for node.js that runs on mac os, linux and windows. It makes you easier to execute your os shell commands, implement bash commands and functionalize it.
 
 ### 🕹 Install
 ```bash
@@ -403,8 +403,8 @@ Variables in default structures are used only in the `exec` command. User can se
 ```typescript
  import 'node-sh'
  
- $.set `name=Jack`      // $.env.name = 'Jack'
- $.echo `Hello, $name`  // Hello, Jack
+ $.set `name=Jack`      // $.env.name = 'seungh'
+ $.echo `Hello, $name`  // Hello, seungh
 ```
 
 ##  🛠  Exceptions
